@@ -3,4 +3,15 @@ class Timer {
         this.currentTime = startTime;
     }
     
+    drawTimer() {
+        
+    }
+
+    getTimer() {
+        return this.currentTime;
+    }
+
+    startCountdown() {
+        
+    }
 }
