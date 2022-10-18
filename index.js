@@ -13,5 +13,5 @@ function draw() {
   background(bg);
   textSize(32);
   fill(255);
-  text('Brendan Corporation', 450, 40);
+  text('Select a game to play!', 450, 40);
 }
