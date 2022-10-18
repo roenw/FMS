@@ -1,6 +1,6 @@
 class ScoreBoard {
-    constructor(){
-        this.score = 0;
+    constructor(startNum){
+        this.score = startNum;
     }
 
     // gets current score
