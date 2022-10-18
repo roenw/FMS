@@ -1,5 +1,10 @@
 function setup() {
   createCanvas(1200, 900);
+
+  background(135, 194, 258);
+
+  let score = new ScoreBoard(0);
+  score.drawBoard();
   
   let button;
   button = createButton('big balls');
@@ -13,5 +18,4 @@ function changeBG() {
 }
 
 function draw() {
-  background(135, 194, 258);
 }
