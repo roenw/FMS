@@ -1,6 +1,6 @@
 var bg;
 
-function preload(){
+function preload() {
     bg = loadImage('assets/forest.jpg')
 }
 
