@@ -27,9 +27,9 @@ class ScoreBoard {
     drawBoard() {
         strokeWeight(1);
         stroke(50);
-        rect(0, 0, 800, 40, 0, 0, 20, 20);
+        rect(0, 0, 1200, 40, 0, 0, 20, 20);
         textSize(20);
-        text('Score: ', 300, 25);
+        text('Score: ', 530, 25);
     }
 
     // fills over previous score and draws current score
