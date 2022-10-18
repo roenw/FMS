@@ -1,4 +1,5 @@
 class ScoreBoard {
+    // FIXME #1 fix score counter
     constructor(startNum){
         this.score = startNum;
     }
