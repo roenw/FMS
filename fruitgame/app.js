@@ -3,6 +3,12 @@ function setup() {
 
     let score = new ScoreBoard(0);
     score.drawBoard();
+
+    score.updateBoard();
+    score.setScore(10);
+    score.addScore(10);
+    console.log(score.getScore());
+    score.updateBoard();
 }
   
 function draw() {

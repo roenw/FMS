@@ -6,22 +6,22 @@ class ScoreBoard {
 
     // gets current score
     getScore() {
-        return this.count;
+        return this.score;
     }
 
     // set score
     setScore(num) {
-        this.count = num;
+        this.score = num;
     }
 
     // add to score
     addScore(num) {
-        this.count += num;
+        this.score += num;
     }
 
     // subtract from score
     subScore(num) {
-        this.count -= num;
+        this.score -= num;
     }
 
     // draws top bar with text
@@ -36,7 +36,7 @@ class ScoreBoard {
     // fills over previous score and draws current score
     updateBoard() {
         noStroke();
-        rect(360, 5, 100, 30);
-        text(this.score, 400, 25);
+        rect(650, 5, 100, 30);
+        text(this.score, 650, 25);
     }
 }
