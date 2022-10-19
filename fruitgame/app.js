@@ -1,12 +1,13 @@
-var isRunning = false;
 var button;
+var d;
 
 function setup() {
     createCanvas(1200, 900);
 
     button = createImg('../assets/backbutton.png');
-    button.position(500, 500);
-    button.mousePressed(console.log("mouse press"));
+    button.size(100, 100)
+    button.position(1100, 700);
+    
 
     let score = new ScoreBoard(0);
     let time = new Timer(10);
@@ -23,4 +24,12 @@ function setup() {
 }
   
 function draw() {
+}
+
+function mouseClicked() {
+    d = dist(mouseX, mouseY, 1100, 700);
+        if (d < 80) {
+            console.log("mouse PRESSED");
+            window.location.href = "/";
+        }
 }
