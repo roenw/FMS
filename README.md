@@ -1,4 +1,4 @@
-# FSE 100: FMS Porject Group 6
+# FSE 100: FMS Project Group 6
 ### Authors: Roen Wainscoat, Savannah Gong, Kevin Zhang, Brendan Waldrop
 
 
