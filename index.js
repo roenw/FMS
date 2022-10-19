@@ -13,7 +13,6 @@ function mouseClicked() {
   } else if(mouseX < 600 && mouseY < 450) {
     // Mouse clicked in Cartesian Q1, load Monkey game
     redirectUser("paintmonkey")
-    alert("Monkey");
   } else if(mouseX < 600 && mouseY > 450) {
     // Mouse clicked in Cartesian Q3, load blocks game
     redirectUser("sorting")
