@@ -4,7 +4,7 @@ var d;
 function setup() {
     createCanvas(1200, 900);
 
-    button = createImg('..backbutton.png');
+    button = createImg('../assets/backbutton.png');
     button.size(100, 100)
     button.position(1100, 700);
     
@@ -30,6 +30,6 @@ function mouseClicked() {
     d = dist(mouseX, mouseY, 1100, 700);
         if (d < 80) {
             console.log("mouse PRESSED");
-            window.location.href = "/";
+            window.location.href = "..";
         }
 }
