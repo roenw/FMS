@@ -1,9 +1,15 @@
 var bg;
 
+function redirectUser(url) {
+  window.location.href = url;
+}
+
 function preload() {
     bgImg = loadImage('assets/forest.jpg');
     monkeyImg = loadImage('assets/monkey.png');
     moleImg = loadImage('assets/mole.png');
+    sortedImg = loadImage('assets/sorted.png');
+    fruitImg = loadImage('assets/fruit.png');
 }
 
 function setup() {
@@ -22,6 +28,12 @@ function setup() {
   
   imgScale = 1.5;
   image(moleImg, 600, 90, imgScale * 209, imgScale * 201);
+
+  imgScale = 1;
+  image(sortedImg, 150, 500, imgScale * 223, imgScale * 160);
+
+  imgScale = 0.8;
+  image(fruitImg, 650, 500, imgScale * 210, imgScale * 206);
 }
 
 function draw() {
