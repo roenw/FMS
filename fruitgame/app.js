@@ -4,7 +4,7 @@ var d;
 function setup() {
     createCanvas(1200, 900);
 
-    button = createImg('../assets/backbutton.png');
+    button = createImg('..backbutton.png');
     button.size(100, 100)
     button.position(1100, 700);
     
