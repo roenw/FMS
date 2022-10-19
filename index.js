@@ -24,7 +24,7 @@ function mouseClicked() {
 
 function preload() {
     bgImg = loadImage('assets/forest.jpg');
-    monkeyImg = loadImage('assets/monkey.png');
+    monkeyImg = loadImage('assets/monkey.gif');
     moleImg = loadImage('assets/mole.png');
     sortedImg = loadImage('assets/sorted.png');
     fruitImg = loadImage('assets/fruit.png');
@@ -42,7 +42,7 @@ function setup() {
   var imgScale;
 
   imgScale = 0.33;
-  image(monkeyImg, 150, 150, imgScale * 798, imgScale * 558);
+  image(monkeyImg, 150, 150, imgScale * 798, imgScale * 558).play();
   
   imgScale = 1.5;
   image(moleImg, 600, 90, imgScale * 209, imgScale * 201);
