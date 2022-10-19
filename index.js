@@ -7,16 +7,16 @@ function redirectUser(url) {
 function mouseClicked() {
   // FIXME: Put real button X/Y boundaries
   // Determine where on the screen the mouse is clicked
-  if(mouseX > 600 && mouseY < 450) {
+  if(mouseX > (window.screen.width / 2) && mouseY < (window.screen.height / 2)) {
     // Mouse clicked in Cartesian Q2, load Mole game
     redirectUser("whack")
-  } else if(mouseX < 600 && mouseY < 450) {
+  } else if(mouseX < (window.screen.width / 2) && mouseY < (window.screen.height / 2)) {
     // Mouse clicked in Cartesian Q1, load Monkey game
     redirectUser("paintmonkey")
-  } else if(mouseX < 600 && mouseY > 450) {
+  } else if(mouseX < (window.screen.width / 2) && mouseY > (window.screen.height / 2)) {
     // Mouse clicked in Cartesian Q3, load blocks game
     redirectUser("sorting")
-  } else if(mouseX > 600 && mouseY > 450) {
+  } else if(mouseX > (window.screen.width / 2) && mouseY > (window.screen.height / 2)) {
     // Mouse clicked in Cartesian Q4, load catch fruit game
     redirectUser("fruitgame")
   }
@@ -31,7 +31,7 @@ function preload() {
 }
 
 function setup() {
-  createCanvas(1200, 900);
+  createCanvas(window.screen.width, window.screen.height);
   tint(150, 255);
   background(bgImg);
   textSize(32);
