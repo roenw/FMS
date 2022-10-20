@@ -32,7 +32,7 @@ function preload() {
 }
 
 function setup() {
-  createCanvas(window.screen.width - 50, window.screen.height - 150);
+  createCanvas(window.screen.width - 100, window.screen.height - 200);
   tint(150, 255);
   background(bgImg);
   textFont(titleFont);
