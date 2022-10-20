@@ -33,6 +33,7 @@ function preload() {
 
 function setup() {
   createCanvas(window.screen.width - 100, window.screen.height - 150);
+  push();
   tint(150, 255);
   background(bgImg);
   textFont(titleFont);
@@ -41,7 +42,13 @@ function setup() {
   textSize(50);
   fill(255);
   text('Select a game to play!', width / 4 + 50, 60);
+  textSize(30);
+  text('Paint Monkey', width * 0.20, height * 0.20);
+  text('Whack a Mole', width * 0.60 + 50, height * 0.20);
+  text('Sorting Shapes', width * 0.20, height * 0.60 + 50);
+  text('Catch the Fruit', width * 0.60 + 25, height * 0.60 + 50);
   noTint();
+  pop();
 
   var imgScale;
 
