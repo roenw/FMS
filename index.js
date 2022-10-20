@@ -23,35 +23,39 @@ function mouseClicked() {
 }
 
 function preload() {
-    bgImg = loadImage('assets/forest.jpg');
+    bgImg = loadImage('assets/forest2.jpg');
     monkeyImg = loadImage('assets/monkey.gif');
     moleImg = loadImage('assets/mole.png');
     sortedImg = loadImage('assets/sorted.png');
     fruitImg = loadImage('assets/fruit.png');
+    titleFont = loadFont('assets/titlefont.otf');
 }
 
 function setup() {
-  createCanvas(window.screen.width, window.screen.height);
+  createCanvas(window.screen.width - 50, window.screen.height - 150);
   tint(150, 255);
   background(bgImg);
-  textSize(32);
+  textFont(titleFont);
+  strokeWeight(5);
+  stroke(50);
+  textSize(50);
   fill(255);
-  text('Select a game to play!', 450, 40);
+  text('Select a game to play!', width / 4 + 50, 60);
   noTint();
 
   var imgScale;
 
   imgScale = 0.33;
-  image(monkeyImg, 150, 150, imgScale * 798, imgScale * 558).play();
+  image(monkeyImg, width * 0.20, height * 0.20, imgScale * 798, imgScale * 558);
   
   imgScale = 1.5;
-  image(moleImg, 600, 90, imgScale * 209, imgScale * 201);
+  image(moleImg, width * 0.60, height * 0.20 - 50, imgScale * 209, imgScale * 201);
 
   imgScale = 1;
-  image(sortedImg, 150, 500, imgScale * 223, imgScale * 160);
+  image(sortedImg, width * 0.20, height * 0.70, imgScale * 223, imgScale * 160);
 
   imgScale = 0.8;
-  image(fruitImg, 650, 500, imgScale * 210, imgScale * 206);
+  image(fruitImg, width * 0.60 + 50, height * 0.70, imgScale * 210, imgScale * 206);
 }
 
 function draw() {
