@@ -38,9 +38,6 @@ function setup() {
 
     background(bg);
 
-    let score = new ScoreBoard(0);
-    score.drawBoard();
-
     isRunning = true;
 }
   
