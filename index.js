@@ -47,6 +47,11 @@ function setup() {
   text('Whack a Mole', width * 0.60 + 50, height * 0.20);
   text('Sorting Shapes', width * 0.20, height * 0.60 + 50);
   text('Catch the Fruit', width * 0.60 + 25, height * 0.60 + 50);
+  textSize(15);
+  text('Kevin Zhang', width * 0.25, height * 0.50);
+  text('Roen Wainscoat', width * 0.65 + 25, height * 0.60 - 40);
+  text('Savannah Gong', width * 0.25, height * 0.90 + 50);
+  text('Brendan Waldrop', width * 0.65 + 25, height * 0.90 + 50);
   noTint();
   pop();
 
