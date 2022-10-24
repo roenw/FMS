@@ -6,7 +6,7 @@
 // <<Universal Top Bar>>
 var score = 0; // starting score
 var time = 60; // start time
-var gameStart = false; // game state
+var isRunning = true; // game state
 
 function preload() {
     jungleBg = loadImage('../assets/jungle.jpg');
@@ -27,6 +27,29 @@ function setup() {
 function draw() {
 
     // <<Universal Top Bar>>
+    getTopBar();
+    // Timer
+    if (isRunning == true) {
+        if (time > 0) {
+            time -= 1/60;
+        } else {
+            time = 0;
+            // game end event
+        }
+    }
+    
+}
+
+function mouseClicked() {
+    // <<Universal Top Bar>>
+    // Back Button
+    if(mouseX > (width * 0.95) && mouseY < 35) {
+        window.location.href = "/";
+    }
+}
+
+// <<Universal Top Bar>>
+function getTopBar() {
     push();
     noStroke();
     fill(150);
@@ -44,22 +67,4 @@ function draw() {
 
     image(backArrow, width * 0.95, 5, 60, 40);
     pop();
-    
-    if (gameStart == true) {
-        if (time > 0) {
-            time -= 1/60;
-        } else {
-            time = 0;
-            // insert game end event
-        }
-    }
-    // End Bar
-}
-
-function mouseClicked() {
-    // <<Universal Top Bar>>
-    // Back Button
-    if(mouseX > (width * 0.95) && mouseY < 35) {
-        window.location.href = "/";
-    }
 }
