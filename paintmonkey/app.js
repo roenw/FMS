@@ -20,7 +20,7 @@ function setup() {
     createCanvas(window.screen.width - 100, window.screen.height - 150);
 
     
-    image(monkey1, width * 0.26, height * 0.20, (700*700*1.1)/(window.screen.height), (470*470*2.72)/(window.screen.width));
+    image(monkey1, width * 0.26, height * 0.20, window.screen.height/1.1, window.screen.width/2.72);
 
     textFont(barFont);
     noStroke();
