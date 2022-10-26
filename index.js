@@ -9,16 +9,16 @@ function mouseClicked() {
   // Determine where on the screen the mouse is clicked
   if(mouseX > (window.screen.width / 2) && mouseY < (window.screen.height / 2)) {
     // Mouse clicked in Cartesian Q2, load Mole game
-    redirectUser("whack")
+    redirectUser("whack");
   } else if(mouseX < (window.screen.width / 2) && mouseY < (window.screen.height / 2)) {
     // Mouse clicked in Cartesian Q1, load Monkey game
-    redirectUser("paintmonkey")
+    redirectUser("paintmonkey");
   } else if(mouseX < (window.screen.width / 2) && mouseY > (window.screen.height / 2)) {
     // Mouse clicked in Cartesian Q3, load blocks game
-    redirectUser("sorting")
+    redirectUser("sorting");
   } else if(mouseX > (window.screen.width / 2) && mouseY > (window.screen.height / 2)) {
     // Mouse clicked in Cartesian Q4, load catch fruit game
-    redirectUser("fruitgame")
+    redirectUser("fruitgame");
   }
 }
 
@@ -29,6 +29,8 @@ function preload() {
     sortedImg = loadImage('assets/sorted.png');
     fruitImg = loadImage('assets/fruit.png');
     titleFont = loadFont('assets/titlefont.otf');
+
+    buttonSound = loadSound('sounds/buttonpop.wav');
 }
 
 function setup() {

@@ -7,10 +7,12 @@
 var score = 0; // starting score
 var time = 60; // start time
 var isRunning = true; // game state
+let bowl1;
+let bowlImg;
 
 function preload() {
     jungleBg = loadImage('../assets/jungle.jpg');
-
+    bowlImg = loadImage('../assets/bowl.png');
     // <<Universal Top Bar>>
     backArrow = loadImage('../assets/backarrow.png');
     barFont = loadFont('../assets/titlefont.otf');
@@ -19,12 +21,15 @@ function preload() {
 function setup() {
     createCanvas(window.screen.width - 100, window.screen.height - 150);
     
-    tint(255, 128);
-    background(jungleBg);
-    noTint();
+
+    bowl1 = new Bowl();
 }
   
 function draw() {
+    bowl1.move();
+    background(jungleBg);
+
+    image(bowlImg, bowl1.x, bowl1.y, 150, 150);
 
     // <<Universal Top Bar>>
     getTopBar();
@@ -50,6 +55,7 @@ function mouseClicked() {
 
 // <<Universal Top Bar>>
 function getTopBar() {
+    
     push();
     noStroke();
     fill(150);
@@ -67,4 +73,34 @@ function getTopBar() {
 
     image(backArrow, width * 0.95, 5, 60, 40);
     pop();
+}
+
+function keyReleased() {
+    bowl1.setDir(0);
+}
+
+function keyPressed() {
+    if (keyCode === RIGHT_ARROW) {
+        bowl1.setDir(1);
+    } else if (keyCode === LEFT_ARROW) {
+        bowl1.setDir(-1);
+    }
+}
+
+class Bowl {
+    constructor() {
+        // this.x = constrain(width / 2 - 100, 0, width - 200);
+        this.y = height * 0.80;
+        this.x = width/2;
+        this.xdir = 0;
+    }
+
+    setDir(dir) {
+        this.xdir = dir;
+    }
+
+    move() {
+        this.x += this.xdir * 8;
+    }
+
 }
