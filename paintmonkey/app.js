@@ -22,13 +22,6 @@ function setup() {
     
     image(monkey1, width * 0.26, height * 0.20, window.screen.height/1.1, window.screen.width/2.72);
 
-    textFont(barFont);
-    noStroke();
-    strokeWeight(3);
-    fill('#000000');
-    textSize(20);
-    text('Colors: ', width * 0.022, height * 0.17);
-
     let clr = color('#36150D');
     fill(clr);
     noStroke();
