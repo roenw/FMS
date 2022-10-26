@@ -3,6 +3,13 @@ var moleUp = false;
 var moleX;
 var moleY;
 
+var showTime;
+var clickTime;
+var timeDelta;
+
+var maxMoleX;
+var maxMoleY;
+
 // <<Universal Top Bar>>
 var score = 0; // starting score
 var time = 60; // start time
@@ -17,24 +24,27 @@ function preload() {
     barFont = loadFont('../assets/titlefont.otf');
 }
 
-function sleep(ms) {
-    return new Promise(resolve => setTimeout(resolve, ms));
-}
-
 
 function generateRandom(min, max) {
+    // normalize min and max values
     min = Math.ceil(min);
     max = Math.floor(max);
+    // js representation of a very complicated mathematical function to generate a random number
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
 function drawMole() {
-    // change these to random numbers
-    moleX = generateRandom(50, 1150);
-    moleY = generateRandom(50, 850);
+    moleX = generateRandom(50, window.screen.width - 500);
+    moleY = generateRandom(50, window.screen.height - 300);
 
     imgScale = 0.25;
+
+    maxMoleX = moleX + (imgScale * 800);
+    maxMoleY = moleY + (imgScale * 719);
+
     image(moleCA, moleX, moleY, imgScale * 800, imgScale * 719);
+
+    showTime = Date.now();
 }
 
 function removeMole() {
@@ -53,23 +63,42 @@ function draw() {
     // <<Universal Top Bar>>
     getTopBar();
 
+    // Timer
+    if (time > 0) {
+        time -= 1/60;
+    } else {
+        time = 0;
+        isRunning = false;
+        // game end event
+    }
+
     if(isRunning === true) {
-        // Timer
-        if (time > 0) {
-            time -= 1/60;
-        } else {
-            time = 0;
-            // game end event
+        if(moleUp === false && isRunning === true) {
+            if(timeDelta) {
+                if(timeDelta < 1500) {
+                    // if user is fast at clicking moles, give them the moles faster (next level)
+                    setTimeout(drawMole, generateRandom(500, 2000));
+                    moleUp = true;
+                }
+            } else {
+                setTimeout(drawMole, generateRandom(1000, 5000));
+                moleUp = true;
+            }
         }
+    } else {
+        removeMole();
+        time = 0;
+        getTopBar();
 
-
-        if(moleUp === false) {
-            delayMs = generateRandom(1000, 5000);
-            sleep(delayMs);
-            drawMole();
-            moleUp = true;
-            sleep(delayMs);
-        }
+        stroke(0);
+        strokeWeight(5);
+        textSize(80);        
+        fill(180, 6, 0);
+        text('Game Over!', 585, 750);
+        fill(0, 102, 153);
+        text('Your Score was ' + score, 500, 850);
+        textSize(55);
+        text('Click the grass to play again.', 500, 950);
     }
 }
 
@@ -99,5 +128,23 @@ function mouseClicked() {
     // Back Button
     if(mouseX > (width * 0.95) && mouseY < 35) {
         window.location.href = "/";
+    }
+
+    if(isRunning === false) {
+        if(mouseY > 100) {
+            window.location.reload();
+        }
+    }
+
+    if(mouseX => moleX && mouseX <= maxMoleX) {
+        if(mouseY >= moleY && mouseY <= maxMoleY) {
+            // Mole clicked. Increment score, remove mole, and start timeout for new one
+            clickTime = Date.now();
+            timeDelta = clickTime - showTime;
+
+            removeMole();
+            ++score
+            moleUp = false;
+        }
     }
 }

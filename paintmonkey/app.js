@@ -5,6 +5,7 @@
 
 // <<Universal Top Bar>>
 var score = 0; // starting score
+var currColor = '#36150D';
 
 function preload() {
     // <<Universal Top Bar>>
@@ -17,7 +18,9 @@ function setup() {
     cursor('../assets/cursor.png', 7, 55);
     background('#FFFFFF');
     createCanvas(window.screen.width - 100, window.screen.height - 150);
-    image(monkey1, width * 0.26, height * 0.20, 700, 470);
+
+    
+    image(monkey1, width * 0.26, height * 0.20, window.screen.height/1.1, window.screen.width/2.72);
 
     textFont(barFont);
     noStroke();
@@ -29,37 +32,63 @@ function setup() {
     let clr = color('#36150D');
     fill(clr);
     noStroke();
-    square(30, 130, 55,20);
+    square(30, 130, 50,20);
 
     clr = color('#C78812');
     fill(clr);
     noStroke();
-    square(30, 200, 55,20);
+    square(30, 200, 50,20);
 
     clr = color('#FFF240');
     fill(clr);
     noStroke();
-    square(30, 270, 55,20);
+    square(30, 270, 50,20);
 
     clr = color('#FFD1AD');
     fill(clr);
     noStroke();
-    square(30, 340, 55,20);
+    square(30, 340, 50,20);
+
+    stroke(currColor);
 }
   
 function draw() {
     // <<Universal Top Bar>>
     getTopBar();
-    stroke('red');
-    strokeWeight(5);
-    if(mouseIsPressed){
-        line(mouseX,mouseY,pmouseX,pmouseY);
-  	}
+    if (mouseX <= 80 && mouseX >= 30) {
+        stroke(getColor());
+    }
+    else if (mouseX >= 80) {
+        strokeWeight(5);
+        if(mouseIsPressed){
+            line(mouseX,mouseY,pmouseX,pmouseY);
+  	    }
+    }
 }
 
 function getPaintSize() {
     return 2;
 }
+
+function getColor() {
+    if (mouseY >= 130 && mouseY <= 180 && mouseIsPressed) {
+        currColor = '#36150D';
+    }
+
+    else if (mouseY >= 200 && mouseY <= 250 && mouseIsPressed) {
+        currColor = '#C78812';
+    }
+
+    else if (mouseY >= 270 && mouseY <= 320 && mouseIsPressed) {
+        currColor = '#FFF240';
+    }
+
+    else if (mouseY >= 340 && mouseY <= 390 && mouseIsPressed) {
+        currColor = '#FFD1AD';
+    }
+    return currColor;
+}
+
 
 // <<Universal Top Bar>>
 function getTopBar() {
