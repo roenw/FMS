@@ -106,6 +106,6 @@ function mouseClicked() {
     // <<Universal Top Bar>>
     // Back Button
     if(mouseX > (width * 0.95) && mouseY < 35) {
-        window.location.href = "/";
+        window.history.back();
     }
 }
