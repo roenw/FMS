@@ -18,7 +18,9 @@ function setup() {
     cursor('../assets/cursor.png', 7, 55);
     background('#FFFFFF');
     createCanvas(window.screen.width - 100, window.screen.height - 150);
-    image(monkey1, width * 0.26, height * 0.20, 700, 470);
+
+    
+    image(monkey1, width * 0.26, height * 0.20, (700*700*1.1)/(window.screen.height), (470*470*2.72)/(window.screen.width));
 
     textFont(barFont);
     noStroke();
