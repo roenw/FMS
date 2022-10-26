@@ -14,6 +14,7 @@ function preload() {
 }
 
 function setup() {
+    cursor('../assets/cursor.png', 7, 55);
     background('#FFFFFF');
     createCanvas(window.screen.width - 100, window.screen.height - 150);
     image(monkey1, width * 0.26, height * 0.20, 700, 470);
@@ -25,23 +26,23 @@ function setup() {
     textSize(20);
     text('Colors: ', width * 0.022, height * 0.17);
 
-    let c = color('#36150D');
-    fill(c);
+    let clr = color('#36150D');
+    fill(clr);
     noStroke();
     square(30, 130, 55,20);
 
-    c = color('#C78812');
-    fill(c);
+    clr = color('#C78812');
+    fill(clr);
     noStroke();
     square(30, 200, 55,20);
 
-    c = color('#FFF240');
-    fill(c);
+    clr = color('#FFF240');
+    fill(clr);
     noStroke();
     square(30, 270, 55,20);
 
-    c = color('#FFD1AD');
-    fill(c);
+    clr = color('#FFD1AD');
+    fill(clr);
     noStroke();
     square(30, 340, 55,20);
 }
@@ -49,6 +50,15 @@ function setup() {
 function draw() {
     // <<Universal Top Bar>>
     getTopBar();
+    stroke('red');
+    strokeWeight(5);
+    if(mouseIsPressed){
+        line(mouseX,mouseY,pmouseX,pmouseY);
+  	}
+}
+
+function getPaintSize() {
+    return 2;
 }
 
 // <<Universal Top Bar>>
