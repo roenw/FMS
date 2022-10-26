@@ -3,6 +3,10 @@ var moleUp = false;
 var moleX;
 var moleY;
 
+var showTime;
+var clickTime;
+var timeDelta;
+
 var maxMoleX;
 var maxMoleY;
 
@@ -30,8 +34,8 @@ function generateRandom(min, max) {
 }
 
 function drawMole() {
-    moleX = generateRandom(50, 1150);
-    moleY = generateRandom(50, 850);
+    moleX = generateRandom(50, window.screen.width - 500);
+    moleY = generateRandom(50, window.screen.height - 300);
 
     imgScale = 0.25;
 
@@ -39,6 +43,8 @@ function drawMole() {
     maxMoleY = moleY + (imgScale * 719);
 
     image(moleCA, moleX, moleY, imgScale * 800, imgScale * 719);
+
+    showTime = Date.now();
 }
 
 function removeMole() {
@@ -68,8 +74,16 @@ function draw() {
 
     if(isRunning === true) {
         if(moleUp === false && isRunning === true) {
-            setTimeout(drawMole, generateRandom(1000, 5000));
-            moleUp = true;
+            if(timeDelta) {
+                if(timeDelta < 1500) {
+                    // if user is fast at clicking moles, give them the moles faster (next level)
+                    setTimeout(drawMole, generateRandom(500, 2000));
+                    moleUp = true;
+                }
+            } else {
+                setTimeout(drawMole, generateRandom(1000, 5000));
+                moleUp = true;
+            }
         }
     } else {
         removeMole();
@@ -125,6 +139,9 @@ function mouseClicked() {
     if(mouseX => moleX && mouseX <= maxMoleX) {
         if(mouseY >= moleY && mouseY <= maxMoleY) {
             // Mole clicked. Increment score, remove mole, and start timeout for new one
+            clickTime = Date.now();
+            timeDelta = clickTime - showTime;
+
             removeMole();
             ++score
             moleUp = false;
