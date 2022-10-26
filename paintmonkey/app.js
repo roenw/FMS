@@ -5,31 +5,60 @@
 
 // <<Universal Top Bar>>
 var score = 0; // starting score
-var time = 60; // start time
-var isRunning = true; // game state
 
 function preload() {
     // <<Universal Top Bar>>
     backArrow = loadImage('../assets/backarrow.png');
     barFont = loadFont('../assets/titlefont.otf');
+    monkey1 = loadImage('../assets/monkey1.jpg');
 }
 
 function setup() {
+    cursor('../assets/cursor.png', 7, 55);
+    background('#FFFFFF');
     createCanvas(window.screen.width - 100, window.screen.height - 150);
+    image(monkey1, width * 0.26, height * 0.20, 700, 470);
+
+    textFont(barFont);
+    noStroke();
+    strokeWeight(3);
+    fill('#000000');
+    textSize(20);
+    text('Colors: ', width * 0.022, height * 0.17);
+
+    let clr = color('#36150D');
+    fill(clr);
+    noStroke();
+    square(30, 130, 55,20);
+
+    clr = color('#C78812');
+    fill(clr);
+    noStroke();
+    square(30, 200, 55,20);
+
+    clr = color('#FFF240');
+    fill(clr);
+    noStroke();
+    square(30, 270, 55,20);
+
+    clr = color('#FFD1AD');
+    fill(clr);
+    noStroke();
+    square(30, 340, 55,20);
 }
   
 function draw() {
     // <<Universal Top Bar>>
     getTopBar();
-    // Timer
-    if (isRunning == true) {
-        if (time > 0) {
-            time -= 1/60;
-        } else {
-            time = 0;
-            // game end event
-        }
-    }
+    stroke('red');
+    strokeWeight(5);
+    if(mouseIsPressed){
+        line(mouseX,mouseY,pmouseX,pmouseY);
+  	}
+}
+
+function getPaintSize() {
+    return 2;
 }
 
 // <<Universal Top Bar>>
@@ -46,8 +75,6 @@ function getTopBar() {
     textSize(30);
     text('Score: ', 10, 35);
     text(score, 110, 35);
-    text('Time: ', width * 0.44, 35);
-    text(round(time), width / 2, 35);
 
     image(backArrow, width * 0.95, 5, 60, 40);
     pop();
