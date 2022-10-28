@@ -8,6 +8,13 @@ var score = 0; // starting score
 var time = 60; // start time
 var isRunning = true; // game state
 
+// <<Drag Object >>
+let grabbed = false;
+let shapeX;
+let shapeY;
+const radius = 50;
+const diameter = radius*2;
+
 function preload() {
   // <<Universal Top Bar>>
   backArrow = loadImage('../assets/backarrow.png');
@@ -18,16 +25,9 @@ function setup() {
   createCanvas(window.screen.width - 100, window.screen.height - 150);
 
   background(135, 194, 258);
-  
-  let button;
-  button = createButton('big balls');
-  button.position(69, 69);
-  button.mousePressed(changeBG);
-}
 
-function changeBG() {
-  let val = random(255);
-  background(val);
+  shapeX = width/2;
+  shapeY = height/2;
 }
 
 function draw() {
@@ -42,6 +42,8 @@ function draw() {
           // game end event
       }
   }
+  // << Drag Object >>
+  ellipse(shapeX, shapeY, diameter);
 }
 
 function mouseClicked() {
@@ -71,4 +73,26 @@ function getTopBar() {
 
   image(backArrow, width * 0.95, 5, 60, 40);
   pop();
+}
+
+// <<Drag Object>>
+function mousePressed(){
+  let d = dist(mouseX, mouseY, shapeX, shapeY);
+  if (d < radius) {
+    shapeMove = true;
+}
+  else{
+    shapeMove = false;
+  }
+}
+
+function mouseReleased(){
+  shapeMove = false;
+}
+
+function mouseDragged(){
+  if(shapeMove){
+    shapeX = mouseX;
+    shapeY = mouseY;
+  }
 }
