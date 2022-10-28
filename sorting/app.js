@@ -24,13 +24,12 @@ function preload() {
 function setup() {
   createCanvas(window.screen.width - 100, window.screen.height - 150);
 
-  background(135, 194, 258);
-
   shapeX = width/2;
   shapeY = height/2;
 }
 
 function draw() {
+  background(135, 194, 258);
   // <<Universal Top Bar>>
   getTopBar();
   // Timer
