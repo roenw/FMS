@@ -5,14 +5,23 @@
 
 // <<Universal Top Bar>>
 var score = 0; // starting score
-var time = 60; // start time
-var isRunning = true; // game state
+var time = 20; // start time
+var isRunning = false; // game state
 let bowl1;
 let bowlImg;
+let difficulty = 5;
+let fruitImg = [];
+let fruits = [];
+let krits = [];
+
 
 function preload() {
     jungleBg = loadImage('../assets/jungle.jpg');
     bowlImg = loadImage('../assets/bowl.png');
+    kritImg = loadImage('../assets/krit.jpg');
+    fruitImg[0] = loadImage('../assets/apple.png');
+    fruitImg[1] = loadImage('../assets/banana.png');
+    fruitImg[2] = loadImage('../assets/pineapple.png');
     // <<Universal Top Bar>>
     backArrow = loadImage('../assets/backarrow.png');
     barFont = loadFont('../assets/titlefont.otf');
@@ -21,6 +30,16 @@ function preload() {
 function setup() {
     createCanvas(window.screen.width - 100, window.screen.height - 150);
     
+    for (i = 0; i < difficulty; ++i) {
+        let f = new Fruit();
+        fruits.push(f);
+    }
+
+    for (i = 0; i < 3; ++i) {
+        let k = new Krit();
+        krits.push(k);
+    }
+
 
     bowl1 = new Bowl();
 }
@@ -28,18 +47,42 @@ function setup() {
 function draw() {
     bowl1.move();
     background(jungleBg);
-
     image(bowlImg, bowl1.x, bowl1.y, 150, 150);
 
+   
     // <<Universal Top Bar>>
     getTopBar();
+
+    
     // Timer
     if (isRunning == true) {
         if (time > 0) {
             time -= 1/60;
+
+            for (i = 0; i < krits.length; ++i) {
+                krits[i].show();
+                krits[i].move();
+                krits[i].intersects();
+            }
+
+            for (i = 0; i < fruits.length; ++i) {
+                fruits[i].show();
+                fruits[i].move();
+                fruits[i].intersects();
+            }
+
         } else {
             time = 0;
             // game end event
+            textFont(barFont);
+            stroke(1);
+            strokeWeight(3);
+            fill(255);
+            textSize(70);
+            text('GAME OVER', width * 0.40, height / 2);
+            textSize(50);
+            text('Score', width * 0.45, height * 0.65);
+            text(score, width * 0.58, height * 0.65);
         }
     }
     
@@ -80,6 +123,7 @@ function keyReleased() {
 }
 
 function keyPressed() {
+    isRunning = true;
     if (keyCode === RIGHT_ARROW) {
         bowl1.setDir(1);
     } else if (keyCode === LEFT_ARROW) {
@@ -103,4 +147,71 @@ class Bowl {
         this.x += this.xdir * 8;
     }
 
+}
+
+class Fruit {
+    constructor() {
+        this.y = random(-500, 30);
+        this.x = width * random(0.0, 1.0);
+        this.img = random(fruitImg);
+    }
+
+    respawn() {
+        this.y = 30;
+        this.x = width * random(0.0, 1.0);
+        this.img = random(fruitImg);
+    }
+
+    intersects() {
+        let d = dist(this.x, this.y, bowl1.x, bowl1.y);
+        if (d < 100) {
+            this.respawn();
+            ++score;
+        }
+    }
+
+    move() {
+        this.x = this.x + random(-2, 2);
+        this.y = this.y + 2;
+        if (this.y > height * 0.99) {
+            this.respawn();
+        }
+    }
+
+    show() {
+        image(this.img, this.x, this.y, 125, 125);
+    }
+}
+
+class Krit {
+    constructor() {
+        this.y = random(-500, 30);
+        this.x = width * random(0.0, 1.0);
+        this.img = kritImg;
+    }
+
+    respawn() {
+        this.y = 30;
+        this.x = width * random(0.0, 1.0);
+    }
+
+    intersects() {
+        let d = dist(this.x, this.y, bowl1.x, bowl1.y);
+        if (d < 100) {
+            this.respawn();
+            --score;
+        }
+    }
+
+    move() {
+        this.x = this.x + random(-2, 2);
+        this.y = this.y + 2;
+        if (this.y > height * 0.99) {
+            this.respawn();
+        }
+    }
+
+    show() {
+        image(this.img, this.x, this.y, 125, 125);
+    }
 }
