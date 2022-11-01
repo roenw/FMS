@@ -9,7 +9,10 @@ var time = 20; // start time
 var isRunning = false; // game state
 let bowl1;
 let bowlImg;
+
 let difficulty = 5;
+let volume = 1;
+
 let fruitImg = [];
 let fruits = [];
 let krits = [];
@@ -22,6 +25,9 @@ function preload() {
     fruitImg[0] = loadImage('../assets/apple.png');
     fruitImg[1] = loadImage('../assets/banana.png');
     fruitImg[2] = loadImage('../assets/pineapple.png');
+    posSound = loadSound('../assets/sounds/pop2.mp3');
+    negSound = loadSound('../assets/sounds/pop1.mp3');
+    bgSound = loadSound('../assets/sounds/background1.mp3');
     // <<Universal Top Bar>>
     backArrow = loadImage('../assets/backarrow.png');
     barFont = loadFont('../assets/titlefont.otf');
@@ -29,13 +35,16 @@ function preload() {
 
 function setup() {
     createCanvas(window.screen.width - 100, window.screen.height - 150);
+    bgSound.play();
     
+
+
     for (i = 0; i < difficulty; ++i) {
         let f = new Fruit();
         fruits.push(f);
     }
 
-    for (i = 0; i < 3; ++i) {
+    for (i = 0; i < difficulty - 2; ++i) {
         let k = new Krit();
         krits.push(k);
     }
@@ -167,6 +176,7 @@ class Fruit {
         if (d < 100) {
             this.respawn();
             ++score;
+            posSound.play();
         }
     }
 
@@ -200,6 +210,7 @@ class Krit {
         if (d < 100) {
             this.respawn();
             --score;
+            negSound.play();
         }
     }
 
