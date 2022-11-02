@@ -30,7 +30,7 @@ function preload() {
     bgSound = loadSound('../assets/sounds/background1.mp3');
     startSound = loadSound('../assets/sounds/start1.wav');
     iphoneSound = loadSound('../assets/sounds/radar.mp3');
-    fartSound = loadSound('../assets/sounds/fart1.wav');
+    fartSound = loadSound('../assets/sounds/fart2.mp3');
     // <<Universal Top Bar>>
     backArrow = loadImage('../assets/backarrow.png');
     barFont = loadFont('../assets/titlefont.otf');
