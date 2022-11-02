@@ -163,10 +163,10 @@ function keyReleased() {
 
 function keyPressed() {
     if (keyCode === RIGHT_ARROW) {
-        fartSound.play();
+        // fartSound.play();
         bowl1.setDir(1);
     } else if (keyCode === LEFT_ARROW) {
-        fartSound.play();
+        // fartSound.play();
         bowl1.setDir(-1);
     }
 }
@@ -251,7 +251,7 @@ class Krit {
         if (d < 100) {
             this.respawn();
             --score;
-            iphoneSound.play();
+            negSound.play();
         }
     }
 
