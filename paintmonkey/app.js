@@ -16,8 +16,8 @@ function preload() {
 
 function setup() {
     cursor('../assets/cursor.png', 7, 55);
-    background('#FFFFFF');
     createCanvas(window.screen.width - 100, window.screen.height - 150);
+    background('#FFFFFF');
 
     
     image(monkey1, width * 0.26, height * 0.20, window.screen.height/1.1, window.screen.width/2.72);
@@ -55,7 +55,9 @@ function draw() {
         strokeWeight(5);
         if(mouseIsPressed){
             if (inBoundary()) {
-            line(mouseX,mouseY,pmouseX,pmouseY);
+            //text(mouseX, 10, 30);
+            //fill(0, 102, 153);
+            point(mouseX,mouseY);
             }
   	    }
     }
@@ -66,6 +68,29 @@ function getPaintSize() {
 }
 
 function inBoundary() {
+    if (currColor == '#36150D') {
+        let getColor = get(mouseX, mouseY);
+
+        fill(getColor);
+        text(getColor, 10, 30);
+
+        if (getColor == '255,255,255,255' || getColor == '254,254,254,255' || getColor == '140,140,140,255' || getColor == '203,203,203,203' || getColor == '237,237,237,255') {
+            return false;
+        }
+    }
+
+    else if (currColor == '#C78812') {
+
+    }
+
+    else if (currColor == '#FFF240') {
+
+    }
+
+    else if (currColor == '#FFD1AD') {
+
+    }
+
     return true;
 }
 
