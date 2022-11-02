@@ -7,8 +7,15 @@ var showTime;
 var clickTime;
 var timeDelta;
 
+var playedPunishmentSound = false;
+
 var maxMoleX;
 var maxMoleY;
+
+var pointSound = new Audio('../assets/sounds/pop2.mp3');
+var radarSound = new Audio('../assets/sounds/radar.mp3');
+var startSound = new Audio('../assets/sounds/start1.wav');
+var backgroundMusic = new Audio('../assets/sounds/trap.mp3');
 
 // <<Universal Top Bar>>
 var score = 0; // starting score
@@ -79,18 +86,29 @@ function draw() {
     }
 
     if(isRunning === true) {
-        if(moleUp === false && isRunning === true) {
+        if(moleUp === false) {
             if(timeDelta) {
                 if(timeDelta < 1500) {
                     // if user is fast at clicking moles, give them the moles faster (next level)
-                    setTimeout(drawMole, generateRandom(500, 2000));
+                    setTimeout(drawMole, generateRandom(250, 1500));
+                    moleUp = true;
+                } else {
+                    setTimeout(drawMole, generateRandom(1000, 3000));
                     moleUp = true;
                 }
             } else {
-                setTimeout(drawMole, generateRandom(1000, 5000));
+                setTimeout(drawMole, generateRandom(1000, 3000));
                 moleUp = true;
             }
         }
+
+        if(((Date.now() - showTime) > 3000)) {
+            if(playedPunishmentSound === false) {
+                radarSound.play();
+                playedPunishmentSound = true;
+            }
+        }
+
     } else if(gameFinished === true) {
         redrawBG();
         getTopBar();
@@ -140,6 +158,10 @@ function mouseClicked() {
             window.location.reload();
         }
     } if(isRunning === false && gameFinished === false) {
+        startSound.play();
+
+        backgroundMusic.play();
+
         time = 30;
         isRunning = true;
         redrawBG();
@@ -148,12 +170,22 @@ function mouseClicked() {
     if(mouseX => moleX && mouseX <= maxMoleX) {
         if(mouseY >= moleY && mouseY <= maxMoleY) {
             // Mole clicked. Increment score, remove mole, and start timeout for new one
+            pointSound.pause();
+            pointSound.currentTime = 0;
+
             clickTime = Date.now();
             timeDelta = clickTime - showTime;
 
             redrawBG();
             ++score
             moleUp = false;
+
+            radarSound.pause();
+            radarSound.currentTime = 0;
+
+            pointSound.play();
+
+            playedPunishmentSound = false;
         }
     }
 }
