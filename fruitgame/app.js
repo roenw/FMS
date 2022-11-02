@@ -35,7 +35,6 @@ function preload() {
 
 function setup() {
     createCanvas(window.screen.width - 100, window.screen.height - 150);
-    bgSound.play();
     bgSound.loop();
     
 
