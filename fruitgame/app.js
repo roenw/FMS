@@ -251,7 +251,7 @@ class Krit {
         if (d < 100) {
             this.respawn();
             --score;
-            iphoneSound.play();
+            negSound.play();
         }
     }
 
