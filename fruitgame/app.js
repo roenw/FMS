@@ -28,6 +28,7 @@ function preload() {
     posSound = loadSound('../assets/sounds/pop2.mp3');
     negSound = loadSound('../assets/sounds/pop1.mp3');
     bgSound = loadSound('../assets/sounds/background1.mp3');
+    startSound = loadSound('../assets/sounds/start1.wav');
     // <<Universal Top Bar>>
     backArrow = loadImage('../assets/backarrow.png');
     barFont = loadFont('../assets/titlefont.otf');
@@ -114,6 +115,7 @@ function mouseClicked() {
     // Back Button
     let d = dist(mouseX, mouseY, width / 2, height * 0.45);
         if (d < 100) {
+            startSound.play();
             isRunning = true;
             time = 30;
             score = 0;

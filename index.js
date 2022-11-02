@@ -23,6 +23,7 @@ function mouseClicked() {
 }
 
 function preload() {
+    bgSound = loadSound('assets/sounds/background0.mp3');
     bgImg = loadImage('assets/forest2.jpg');
     monkeyImg = loadImage('assets/monkey.gif');
     moleImg = loadImage('assets/mole.png');
@@ -30,11 +31,12 @@ function preload() {
     fruitImg = loadImage('assets/fruit.png');
     titleFont = loadFont('assets/titlefont.otf');
 
-    buttonSound = loadSound('sounds/buttonpop.wav');
 }
 
 function setup() {
   createCanvas(window.screen.width - 100, window.screen.height - 150);
+  bgSound.loop();
+
   push();
   tint(150, 255);
   background(bgImg);
