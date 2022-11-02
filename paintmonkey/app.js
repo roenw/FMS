@@ -54,13 +54,19 @@ function draw() {
     else if (mouseX >= 80) {
         strokeWeight(5);
         if(mouseIsPressed){
+            if (inBoundary()) {
             line(mouseX,mouseY,pmouseX,pmouseY);
+            }
   	    }
     }
 }
 
 function getPaintSize() {
     return 2;
+}
+
+function inBoundary() {
+    return true;
 }
 
 function getColor() {
