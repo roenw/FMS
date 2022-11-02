@@ -61,7 +61,17 @@ function draw() {
    
     // <<Universal Top Bar>>
     getTopBar();
-
+    if (isRunning == false) {
+        textFont(barFont);
+        stroke(1);
+        strokeWeight(3);
+        fill(255);
+        textSize(75);
+        text('START', width * 0.43, height / 2);
+        textSize(50);
+        text('Score', width * 0.43, height * 0.65);
+        text(score, width * 0.55, height * 0.65);
+    }
     
     // Timer
     if (isRunning == true) {
@@ -89,6 +99,8 @@ function draw() {
             fill(255);
             textSize(70);
             text('GAME OVER', width * 0.40, height / 2);
+            textSize(30);
+            text('Click Me to Play Again', width * 0.41, height * 0.55);
             textSize(50);
             text('Score', width * 0.45, height * 0.65);
             text(score, width * 0.58, height * 0.65);
@@ -100,6 +112,20 @@ function draw() {
 function mouseClicked() {
     // <<Universal Top Bar>>
     // Back Button
+    let d = dist(mouseX, mouseY, width / 2, height * 0.45);
+        if (d < 100) {
+            isRunning = true;
+            time = 20;
+            score = 0;
+            for (i = 0; i < krits.length; ++i) {
+                krits[i].origin();
+            }
+
+            for (i = 0; i < fruits.length; ++i) {
+                fruits[i].origin();
+            }
+        }
+
     if(mouseX > (width * 0.95) && mouseY < 35) {
         window.history.back();
     }
@@ -132,7 +158,6 @@ function keyReleased() {
 }
 
 function keyPressed() {
-    isRunning = true;
     if (keyCode === RIGHT_ARROW) {
         bowl1.setDir(1);
     } else if (keyCode === LEFT_ARROW) {
@@ -180,6 +205,11 @@ class Fruit {
         }
     }
 
+    origin() {
+        this.y = random(-500, 30);
+        this.x = width * random(0.0, 1.0);
+    }
+
     move() {
         this.x = this.x + random(-2, 2);
         this.y = this.y + 2;
@@ -202,6 +232,11 @@ class Krit {
 
     respawn() {
         this.y = 30;
+        this.x = width * random(0.0, 1.0);
+    }
+
+    origin() {
+        this.y = random(-500, 30);
         this.x = width * random(0.0, 1.0);
     }
 
