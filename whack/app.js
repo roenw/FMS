@@ -12,7 +12,7 @@ var maxMoleY;
 
 // <<Universal Top Bar>>
 var score = 0; // starting score
-var time = 60; // start time
+var time = 30; // start time
 var isRunning; // game state
 
 function preload() {
@@ -47,7 +47,7 @@ function drawMole() {
     showTime = Date.now();
 }
 
-function removeMole() {
+function redrawBG() {
     background(bg);
 }
 
@@ -56,20 +56,26 @@ function setup() {
 
     background(bg);
 
-    isRunning = true;
+    isRunning = false;
+    gameFinished = false;
 }
   
 function draw() {
     // <<Universal Top Bar>>
     getTopBar();
 
-    // Timer
-    if (time > 0) {
-        time -= 1/60;
-    } else {
-        time = 0;
+    if (time < 0) {
         isRunning = false;
-        // game end event
+        gameFinished = true;
+    }
+
+    // Timer
+    if (time > 0 && isRunning === true) {
+        time -= 1/60;
+    } else if(isRunning === false && gameFinished === false) {
+        fill(255);
+        textSize(55);
+        text('Click the grass to start game.', 500, 950);
     }
 
     if(isRunning === true) {
@@ -85,9 +91,8 @@ function draw() {
                 moleUp = true;
             }
         }
-    } else {
-        removeMole();
-        time = 0;
+    } else if(gameFinished === true) {
+        redrawBG();
         getTopBar();
 
         stroke(0);
@@ -130,10 +135,14 @@ function mouseClicked() {
         window.history.back();
     }
 
-    if(isRunning === false) {
+    if(isRunning === false && gameFinished === true) {
         if(mouseY > 100) {
             window.location.reload();
         }
+    } if(isRunning === false && gameFinished === false) {
+        time = 30;
+        isRunning = true;
+        redrawBG();
     }
 
     if(mouseX => moleX && mouseX <= maxMoleX) {
@@ -142,7 +151,7 @@ function mouseClicked() {
             clickTime = Date.now();
             timeDelta = clickTime - showTime;
 
-            removeMole();
+            redrawBG();
             ++score
             moleUp = false;
         }
