@@ -5,7 +5,7 @@
 
 // <<Universal Top Bar>>
 var score = 0; // starting score
-var time = 20; // start time
+var time = 30; // start time
 var isRunning = false; // game state
 let bowl1;
 let bowlImg;
@@ -115,7 +115,7 @@ function mouseClicked() {
     let d = dist(mouseX, mouseY, width / 2, height * 0.45);
         if (d < 100) {
             isRunning = true;
-            time = 20;
+            time = 30;
             score = 0;
             for (i = 0; i < krits.length; ++i) {
                 krits[i].origin();
