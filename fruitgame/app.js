@@ -29,6 +29,8 @@ function preload() {
     negSound = loadSound('../assets/sounds/pop1.mp3');
     bgSound = loadSound('../assets/sounds/background1.mp3');
     startSound = loadSound('../assets/sounds/start1.wav');
+    iphoneSound = loadSound('../assets/sounds/radar.mp3');
+    fartSound = loadSound('../assets/sounds/fart1.wav');
     // <<Universal Top Bar>>
     backArrow = loadImage('../assets/backarrow.png');
     barFont = loadFont('../assets/titlefont.otf');
@@ -161,8 +163,10 @@ function keyReleased() {
 
 function keyPressed() {
     if (keyCode === RIGHT_ARROW) {
+        fartSound.play();
         bowl1.setDir(1);
     } else if (keyCode === LEFT_ARROW) {
+        fartSound.play();
         bowl1.setDir(-1);
     }
 }
@@ -247,7 +251,7 @@ class Krit {
         if (d < 100) {
             this.respawn();
             --score;
-            negSound.play();
+            iphoneSound.play();
         }
     }
 
