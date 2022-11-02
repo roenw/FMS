@@ -5,15 +5,14 @@
 
 // <<Universal Top Bar>>
 var score = 0; // starting score
-var time = 60; // start time
-var isRunning = true; // game state
 
-// <<Drag Object >>
-let grabbed = false;
-let shapeX;
-let shapeY;
-const radius = 50;
-const diameter = radius*2;
+// <<Draggable Object>>
+let shape1;
+let shape2;
+let shape3;
+let shape4;
+let shape5;
+let shape6;
 
 function preload() {
   // <<Universal Top Bar>>
@@ -24,25 +23,40 @@ function preload() {
 function setup() {
   createCanvas(window.screen.width - 100, window.screen.height - 150);
 
-  shapeX = width/2;
-  shapeY = height/2;
+  // <<Draggable Object>>
+  shape1 = new Draggable(width * 0.25 - 50, height * 0.1, 100, 100, 0);
+  shape2 = new Draggable(width * 0.5 - 50, height * 0.1, 100, 100, 0);
+  shape3 = new Draggable(width * 0.75 - 50, height * 0.1, 100, 100, 1);
+  shape4 = new Draggable(width * 0.25 - 50, height * 0.25, 100, 100, 1);
+  shape5 = new Draggable(width * 0.5 - 50, height * 0.25, 100, 100, 2);
+  shape6 = new Draggable(width * 0.75 - 50, height * 0.25, 100, 100, 2);
 }
 
 function draw() {
   background(135, 194, 258);
   // <<Universal Top Bar>>
   getTopBar();
-  // Timer
-  if (isRunning == true) {
-      if (time > 0) {
-          time -= 1/60;
-      } else {
-          time = 0;
-          // game end event
-      }
-  }
-  // << Drag Object >>
-  ellipse(shapeX, shapeY, diameter);
+
+
+  // <<Draggable Object>>
+  shape1.over();
+  shape1.update();
+  shape1.show();
+  shape2.over();
+  shape2.update();
+  shape2.show();
+  shape3.over();
+  shape3.update();
+  shape3.show();
+  shape4.over();
+  shape4.update();
+  shape4.show();
+  shape5.over();
+  shape5.update();
+  shape5.show();
+  shape6.over();
+  shape6.update();
+  shape6.show();
 }
 
 function mouseClicked() {
@@ -67,31 +81,29 @@ function getTopBar() {
   textSize(30);
   text('Score: ', 10, 35);
   text(score, 110, 35);
-  text('Time: ', width * 0.44, 35);
-  text(round(time), width / 2, 35);
+
 
   image(backArrow, width * 0.95, 5, 60, 40);
   pop();
 }
 
-// <<Drag Object>>
-function mousePressed(){
-  let d = dist(mouseX, mouseY, shapeX, shapeY);
-  if (d < radius) {
-    shapeMove = true;
-}
-  else{
-    shapeMove = false;
-  }
-}
-
-function mouseReleased(){
-  shapeMove = false;
+function mousePressed() {
+  // <<Draggable Object>>
+  shape1.pressed();
+  shape2.pressed();
+  shape3.pressed();
+  shape4.pressed();
+  shape5.pressed();
+  shape6.pressed();
 }
 
-function mouseDragged(){
-  if(shapeMove){
-    shapeX = mouseX;
-    shapeY = mouseY;
-  }
+function mouseReleased() {
+    // <<Draggable Object>>
+  shape1.released();
+  shape2.released();
+  shape3.released();
+  shape4.released();
+  shape5.released();
+  shape6.released();
 }
+
