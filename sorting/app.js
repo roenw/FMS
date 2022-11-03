@@ -33,7 +33,7 @@ function setup() {
 }
 
 function draw() {
-  background(135, 194, 258);
+  background('../assets/junglebg.jpg');
   // <<Universal Top Bar>>
   getTopBar();
 
