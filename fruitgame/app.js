@@ -14,7 +14,10 @@ let difficulty = 5;
 let volume = 1;
 
 let fruitImg = [];
+let rockImg = [];
 let fruits = [];
+let stars = [];
+let rocks = [];
 let krits = [];
 
 
@@ -25,6 +28,10 @@ function preload() {
     fruitImg[0] = loadImage('../assets/apple.png');
     fruitImg[1] = loadImage('../assets/banana.png');
     fruitImg[2] = loadImage('../assets/pineapple.png');
+    rockImg[0] = loadImage('../assets/rock1.png');
+    rockImg[1] = loadImage('../assets/rock2.png');
+    starImg = loadImage('../assets/star.png');
+
     posSound = loadSound('../assets/sounds/pop2.mp3');
     negSound = loadSound('../assets/sounds/pop1.mp3');
     bgSound = loadSound('../assets/sounds/background1.mp3');
@@ -47,9 +54,19 @@ function setup() {
         fruits.push(f);
     }
 
-    for (i = 0; i < difficulty - 2; ++i) {
+    for (i = 0; i < difficulty; ++i) {
+        let r = new Rock();
+        rocks.push(r);
+    }
+
+    for (i = 0; i < 1; ++i) {
         let k = new Krit();
         krits.push(k);
+    }
+
+    for (i = 0; i < 13; ++i) {
+        let s = new Particle();
+        stars.push(s);
     }
 
 
@@ -91,6 +108,17 @@ function draw() {
                 fruits[i].show();
                 fruits[i].move();
                 fruits[i].intersects();
+            }
+
+            for (i = 0; i < rocks.length; ++i) {
+                rocks[i].show();
+                rocks[i].move();
+                rocks[i].intersects();
+            }
+
+            for (i = 0; i < stars.length; ++i) {
+                stars[i].show();
+                stars[i].move();
             }
 
         } else {
@@ -197,7 +225,7 @@ class Fruit {
     }
 
     respawn() {
-        this.y = 30;
+        this.y = random(-500, 30);
         this.x = width * random(0.0, 1.0);
         this.img = random(fruitImg);
     }
@@ -218,7 +246,47 @@ class Fruit {
 
     move() {
         this.x = this.x + random(-2, 2);
-        this.y = this.y + 2;
+        this.y = this.y + 3;
+        if (this.y > height * 0.99) {
+            this.respawn();
+        }
+    }
+
+    show() {
+        image(this.img, this.x, this.y, 125, 125);
+    }
+}
+
+class Rock {
+    constructor() {
+        this.y = random(-500, 30);
+        this.x = width * random(0.0, 1.0);
+        this.img = random(rockImg);
+    }
+
+    respawn() {
+        this.y = random(-500, 30);
+        this.x = width * random(0.0, 1.0);
+        this.img = random(rockImg);
+    }
+
+    intersects() {
+        let d = dist(this.x, this.y, bowl1.x, bowl1.y);
+        if (d < 100) {
+            this.respawn();
+            --score;
+            negSound.play();
+        }
+    }
+
+    origin() {
+        this.y = random(-500, 30);
+        this.x = width * random(0.0, 1.0);
+    }
+
+    move() {
+        this.x = this.x + random(-2, 2);
+        this.y = this.y + 3;
         if (this.y > height * 0.99) {
             this.respawn();
         }
@@ -237,12 +305,12 @@ class Krit {
     }
 
     respawn() {
-        this.y = 30;
+        this.y = -5000;
         this.x = width * random(0.0, 1.0);
     }
 
     origin() {
-        this.y = random(-500, 30);
+        this.y = random(-1000, 30);
         this.x = width * random(0.0, 1.0);
     }
 
@@ -250,17 +318,48 @@ class Krit {
         let d = dist(this.x, this.y, bowl1.x, bowl1.y);
         if (d < 100) {
             this.respawn();
-            --score;
-            negSound.play();
+            score += 10;
+            posSound.play();
+            for (i = 0; i < stars.length; ++i) {
+                stars[i].play();
+            }
         }
     }
 
     move() {
         this.x = this.x + random(-2, 2);
-        this.y = this.y + 2;
+        this.y = this.y + 10;
         if (this.y > height * 0.99) {
             this.respawn();
         }
+    }
+
+    show() {
+        image(this.img, this.x, this.y, 125, 125);
+    }
+}
+
+class Particle {
+    constructor() {
+        this.y = height + 1000;
+        this.x = width * random(0.0, 1.0);
+
+        this.img = starImg;
+    }
+
+    play() {
+        this.y = -100;
+        this.x = width * random(0.0, 1.0);
+    }
+
+    origin() {
+        this.y = -100;
+        this.x = width * random(0.0, 1.0);
+    }
+
+    move() {
+        this.x = this.x + random(-20, 20);
+        this.y = this.y + 15;
     }
 
     show() {
