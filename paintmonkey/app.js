@@ -7,19 +7,21 @@
 var score = 0; // starting score
 var strikes = 10;
 var currColor = '#36150D';
+let song;
 
 function preload() {
     // <<Universal Top Bar>>
     backArrow = loadImage('../assets/backarrow.png');
     barFont = loadFont('../assets/titlefont.otf');
     monkey1 = loadImage('../assets/monkey1.jpg');
+    song = new Audio('../assets/sounds/uplifting-africa-84075.mp3');
 }
 
 function setup() {
     cursor('../assets/cursor.png', 7, 55);
     createCanvas(window.screen.width - 100, window.screen.height - 150);
     background('#FFFFFF');
-
+    song.play();
     
     image(monkey1, width * 0.26, height * 0.20, window.screen.height/1.1, window.screen.width/2.72);
 
@@ -48,6 +50,7 @@ function setup() {
   
 function draw() {
     // <<Universal Top Bar>>
+    //bgMusic();
     getTopBar();
     if (mouseX <= 80 && mouseX >= 30) {
         stroke(getColor());
@@ -65,6 +68,7 @@ function draw() {
                 }
                 score++;
                 if (score > 1000) {
+                    song.stop();
                     background('#b6fc03');
                     getTopBar();
                     textSize(60);
@@ -80,6 +84,7 @@ function draw() {
                 outsideImg();
                 }
                 else {
+                    song.stop();
                     background('black');
                     getTopBar();
                     textSize(60);
@@ -192,3 +197,4 @@ function mouseClicked() {
         window.history.back();
     }
 }
+  
