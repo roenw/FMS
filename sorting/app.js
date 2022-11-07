@@ -18,22 +18,23 @@ function preload() {
   // <<Universal Top Bar>>
   backArrow = loadImage('../assets/backarrow.png');
   barFont = loadFont('../assets/titlefont.otf');
+  junglebg = loadImage('../assets/junglebg.jpg');
 }
 
 function setup() {
   createCanvas(window.screen.width - 100, window.screen.height - 150);
 
   // <<Draggable Object>>
-  shape1 = new Draggable(width * 0.25 - 50, height * 0.1, 100, 100, 0);
-  shape2 = new Draggable(width * 0.5 - 50, height * 0.1, 100, 100, 0);
-  shape3 = new Draggable(width * 0.75 - 50, height * 0.1, 100, 100, 1);
-  shape4 = new Draggable(width * 0.25 - 50, height * 0.25, 100, 100, 1);
-  shape5 = new Draggable(width * 0.5 - 50, height * 0.25, 100, 100, 2);
-  shape6 = new Draggable(width * 0.75 - 50, height * 0.25, 100, 100, 2);
+  shape1 = new Draggable(width * 0.25 - 50, height * 0.1, 100, 100, 0, 'red');
+  shape2 = new Draggable(width * 0.5 - 50, height * 0.1, 100, 100, 0, 'red');
+  shape3 = new Draggable(width * 0.75 - 50, height * 0.1, 100, 100, 1, 'blue');
+  shape4 = new Draggable(width * 0.25 - 50, height * 0.25, 100, 100, 1, 'blue');
+  shape5 = new Draggable(width * 0.5 - 50, height * 0.25, 100, 100, 2, 'green');
+  shape6 = new Draggable(width * 0.75 - 50, height * 0.25, 100, 100, 2, 'green');
 }
 
 function draw() {
-  background('../assets/junglebg.jpg');
+  background(junglebg);
   // <<Universal Top Bar>>
   getTopBar();
 
