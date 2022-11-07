@@ -33,6 +33,7 @@ function preload() {
     starImg = loadImage('../assets/star.png');
 
     posSound = loadSound('../assets/sounds/pop2.mp3');
+    superSound = loadSound('../assets/sounds/bigpop.wav');
     negSound = loadSound('../assets/sounds/pop1.mp3');
     bgSound = loadSound('../assets/sounds/background1.mp3');
     startSound = loadSound('../assets/sounds/start1.wav');
@@ -320,6 +321,7 @@ class Krit {
             this.respawn();
             score += 10;
             posSound.play();
+            superSound.play();
             for (i = 0; i < stars.length; ++i) {
                 stars[i].play();
             }
