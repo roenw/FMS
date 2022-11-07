@@ -4,7 +4,8 @@
  */
 
 // <<Universal Top Bar>>
-var score = 10; // starting score
+var score = 0; // starting score
+var strikes = 10;
 var currColor = '#36150D';
 
 function preload() {
@@ -62,10 +63,20 @@ function draw() {
                 if (detectLine != '0,0,0,255' || detectLine != '2,2,2,255'|| detectLine != '4,4,4,255') {
                 line(mouseX,mouseY,pmouseX, pmouseY);
                 }
+                score++;
+                if (score > 1000) {
+                    background('#b6fc03');
+                    getTopBar();
+                    textSize(60);
+                    textFont(barFont);
+                    text('SUCCESS', width/2.45, height/2);
+                    fill('green');
+                    noLoop();
+                }
             }
 
             else {
-                if (score > 0) {
+                if (strikes > 0) {
                 outsideImg();
                 }
                 else {
@@ -144,9 +155,8 @@ function outsideImg() {
     text('PAINTED OUTSIDE LINES', width/2.3, height/20);
     fill('red');
     textSize(20);
-    score--;
+    strikes--;
 }
-
 
 // <<Universal Top Bar>>
 function getTopBar() {
@@ -162,6 +172,14 @@ function getTopBar() {
     textSize(30);
     text('Score: ', 10, 35);
     text(score, 110, 35);
+
+    textFont(barFont);
+    stroke(1);
+    strokeWeight(3);
+    fill(255);
+    textSize(30);
+    text('Strikes: ', 350, 35);
+    text(strikes, 470, 35);
 
     image(backArrow, width * 0.95, 5, 60, 40);
     pop();
