@@ -68,7 +68,6 @@ function draw() {
                 }
                 score++;
                 if (score > 1000) {
-                    song.stop();
                     background('#b6fc03');
                     getTopBar();
                     textSize(60);
@@ -76,6 +75,7 @@ function draw() {
                     text('SUCCESS', width/2.45, height/2);
                     fill('green');
                     noLoop();
+                    song.pause();
                 }
             }
 
@@ -84,7 +84,6 @@ function draw() {
                 outsideImg();
                 }
                 else {
-                    song.stop();
                     background('black');
                     getTopBar();
                     textSize(60);
@@ -92,6 +91,7 @@ function draw() {
                     text('GAME OVER', width/2.4, height/2);
                     fill('red');
                     noLoop();
+                    song.pause();
                 }
             }
 
@@ -198,3 +198,6 @@ function mouseClicked() {
     }
 }
   
+function numberSound() {
+    
+}
