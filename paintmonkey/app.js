@@ -69,10 +69,12 @@ function draw() {
                 outsideImg();
                 }
                 else {
+                    background('black');
+                    getTopBar();
+                    textSize(60);
                     textFont(barFont);
-                    text('GAME OVER', width/2, height/20);
+                    text('GAME OVER', width/2.4, height/2);
                     fill('red');
-                    textSize(20);
                     noLoop();
                 }
             }
@@ -139,7 +141,7 @@ function getColor() {
 
 function outsideImg() {
     textFont(barFont);
-    text('PAINTED OUTSIDE LINES, WAIT 5 SECONDS', width/2.5, height/25);
+    text('PAINTED OUTSIDE LINES', width/2.3, height/20);
     fill('red');
     textSize(20);
     score--;
