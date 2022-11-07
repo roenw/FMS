@@ -4,8 +4,9 @@
  */
 
 // <<Universal Top Bar>>
-var score = 0; // starting score
+var score = 0.0; // starting score
 var time = 30; // start time
+var combo = 1.00;
 var isRunning = false; // game state
 let bowl1;
 let bowlImg;
@@ -16,6 +17,7 @@ let volume = 1;
 let fruitImg = [];
 let rockImg = [];
 let fruits = [];
+let combos = [];
 let stars = [];
 let rocks = [];
 let krits = [];
@@ -31,9 +33,11 @@ function preload() {
     rockImg[0] = loadImage('../assets/rock1.png');
     rockImg[1] = loadImage('../assets/rock2.png');
     starImg = loadImage('../assets/star.png');
+    comboImg = loadImage('../assets/star2.png');
 
     posSound = loadSound('../assets/sounds/pop2.mp3');
     superSound = loadSound('../assets/sounds/bigpop.wav');
+    megaSound = loadSound('../assets/sounds/bigpop2.wav');
     negSound = loadSound('../assets/sounds/pop1.mp3');
     bgSound = loadSound('../assets/sounds/background1.mp3');
     startSound = loadSound('../assets/sounds/start1.wav');
@@ -66,8 +70,13 @@ function setup() {
     }
 
     for (i = 0; i < 13; ++i) {
-        let s = new Particle();
+        let s = new Particle1();
         stars.push(s);
+    }
+
+    for (i = 0; i < 5; ++i) {
+        let s1 = new Particle2();
+        combos.push(s1);
     }
 
 
@@ -78,6 +87,10 @@ function draw() {
     bowl1.move();
     background(jungleBg);
     image(bowlImg, bowl1.x, bowl1.y, 150, 150);
+
+    textSize(40);
+    text('Combo: x', 30, 200);
+    text(round(combo, 2), 210, 200);
 
    
     // <<Universal Top Bar>>
@@ -122,6 +135,12 @@ function draw() {
                 stars[i].move();
             }
 
+            for (i = 0; i < combos.length; ++i) {
+                combos[i].show();
+                combos[i].move();
+            }
+
+
         } else {
             time = 0;
             // game end event
@@ -135,7 +154,7 @@ function draw() {
             text('Click Me to Play Again', width * 0.41, height * 0.55);
             textSize(50);
             text('Score', width * 0.45, height * 0.65);
-            text(score, width * 0.58, height * 0.65);
+            text(round(score), width * 0.58, height * 0.65);
         }
     }
     
@@ -150,6 +169,7 @@ function mouseClicked() {
             isRunning = true;
             time = 30;
             score = 0;
+            combo = 1;
             for (i = 0; i < krits.length; ++i) {
                 krits[i].origin();
             }
@@ -178,7 +198,7 @@ function getTopBar() {
     fill(255);
     textSize(30);
     text('Score: ', 10, 35);
-    text(score, 110, 35);
+    text(round(score), 110, 35);
     text('Time: ', width * 0.44, 35);
     text(round(time), width / 2, 35);
 
@@ -198,6 +218,7 @@ function keyPressed() {
         // fartSound.play();
         bowl1.setDir(-1);
     }
+
 }
 
 class Bowl {
@@ -235,8 +256,18 @@ class Fruit {
         let d = dist(this.x, this.y, bowl1.x, bowl1.y);
         if (d < 100) {
             this.respawn();
-            ++score;
+            score += (1 * combo);
+            combo += 0.25;
             posSound.play();
+            if (combo > 8) {
+                megaSound.play();
+                for (i = 0; i < stars.length; ++i) {
+                    stars[i].play();
+                }
+                for (i = 0; i < combos.length; ++i) {
+                    combos[i].play();
+                }
+            }
         }
     }
 
@@ -275,7 +306,8 @@ class Rock {
         let d = dist(this.x, this.y, bowl1.x, bowl1.y);
         if (d < 100) {
             this.respawn();
-            --score;
+            score -= (1 * combo);
+            combo = 1.0;
             negSound.play();
         }
     }
@@ -320,6 +352,7 @@ class Krit {
         if (d < 100) {
             this.respawn();
             score += 10;
+            combo += 5;
             posSound.play();
             superSound.play();
             for (i = 0; i < stars.length; ++i) {
@@ -341,7 +374,7 @@ class Krit {
     }
 }
 
-class Particle {
+class Particle1 {
     constructor() {
         this.y = height + 1000;
         this.x = width * random(0.0, 1.0);
@@ -366,5 +399,28 @@ class Particle {
 
     show() {
         image(this.img, this.x, this.y, 125, 125);
+    }
+}
+
+class Particle2 {
+    constructor() {
+        this.y = height * random(0.0, 1.0);
+        this.x = 100 - width;
+
+        this.img = comboImg;
+    }
+
+    play() {
+        this.y = height * random(0.0, 1.0);
+        this.x = width + 300;
+    }
+
+    move() {
+        this.x = this.x - 30;
+        this.y = this.y + random(-20, 20);
+    }
+
+    show() {
+        image(this.img, this.x, this.y, 200, 125);
     }
 }
