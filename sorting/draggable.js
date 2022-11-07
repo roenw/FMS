@@ -2,7 +2,7 @@
 // Daniel Shiffman <http://www.shiffman.net>
 
 class Draggable {
-  constructor(x, y, w, h, s) {
+  constructor(x, y, w, h, s, c) {
     this.dragging = false; // Is the object being dragged?
     this.rollover = false; // Is the mouse over the ellipse?
     this.x = x;
@@ -12,6 +12,7 @@ class Draggable {
     this.offsetX = 0;
     this.offsetY = 0;
     this.shape = s;
+    this.color = c;
   }
 
   over() {
@@ -35,11 +36,11 @@ class Draggable {
     stroke(0);
     // Different fill based on state
     if (this.dragging) {
-      fill(50);
+      fill(this.color);
     } else if (this.rollover) {
-      fill(100);
+      fill(this.color);
     } else {
-      fill(175, 200);
+      fill(this.color);
     }
     if (this.shape == 0) {
       rect(this.x, this.y, this.w, this.h);
