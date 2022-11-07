@@ -260,7 +260,7 @@ class Fruit {
 
 class Rock {
     constructor() {
-        this.y = random(-500, 30);
+        this.y = random(-1000, 30);
         this.x = width * random(0.0, 1.0);
         this.img = random(rockImg);
     }
@@ -300,7 +300,7 @@ class Rock {
 
 class Krit {
     constructor() {
-        this.y = random(-500, 30);
+        this.y = random(-1000, 30);
         this.x = width * random(0.0, 1.0);
         this.img = kritImg;
     }
