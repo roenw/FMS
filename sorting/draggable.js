@@ -13,6 +13,8 @@ class Draggable {
     this.offsetY = 0;
     this.shape = s;
     this.color = c;
+    this.posx = this.x + 50;
+    this.posy = this.y + 50;
   }
 
   over() {
@@ -67,5 +69,13 @@ class Draggable {
   released() {
     // Quit dragging
     this.dragging = false;
+  }
+
+  intersects() {
+    this.posx = this.x + 50;
+    this.posy = this.y + 50;
+    if (this.posx > width * 0.25 - 125 && this.posx < (width * 0.25 - 125) + 250 && this.posy > height * 0.55 && this.posy < (height * 0.55) + 250) {
+      this.color = 'red';
+    }
   }
 }

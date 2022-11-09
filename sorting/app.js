@@ -18,19 +18,26 @@ function preload() {
   // <<Universal Top Bar>>
   backArrow = loadImage('../assets/backarrow.png');
   barFont = loadFont('../assets/titlefont.otf');
+  // <<Background>>
   junglebg = loadImage('../assets/junglebg.jpg');
+  // <<Sound>>
+  bgSound = loadSound('../assets/sounds/moveforward.mp3');
+
 }
 
 function setup() {
   createCanvas(window.screen.width - 100, window.screen.height - 150);
+  bgSound.loop();
 
   // <<Draggable Object>>
-  shape1 = new Draggable(width * 0.25 - 50, height * 0.1, 100, 100, 0, 'red');
-  shape2 = new Draggable(width * 0.5 - 50, height * 0.1, 100, 100, 0, 'red');
-  shape3 = new Draggable(width * 0.75 - 50, height * 0.1, 100, 100, 1, 'blue');
-  shape4 = new Draggable(width * 0.25 - 50, height * 0.25, 100, 100, 1, 'blue');
-  shape5 = new Draggable(width * 0.5 - 50, height * 0.25, 100, 100, 2, 'green');
-  shape6 = new Draggable(width * 0.75 - 50, height * 0.25, 100, 100, 2, 'green');
+  strokeWeight(4);
+  stroke(51);
+  shape1 = new Draggable(width * 0.25 - 50, height * 0.1, 100, 100, 0, 'blue');
+  shape2 = new Draggable(width * 0.5 - 50, height * 0.1, 100, 100, 0, 'green');
+  shape3 = new Draggable(width * 0.75 - 50, height * 0.1, 100, 100, 1, 'green');
+  shape4 = new Draggable(width * 0.25 - 50, height * 0.25, 100, 100, 1, 'red');
+  shape5 = new Draggable(width * 0.5 - 50, height * 0.25, 100, 100, 2, 'red');
+  shape6 = new Draggable(width * 0.75 - 50, height * 0.25, 100, 100, 2, 'blue');
 }
 
 function draw() {
@@ -38,11 +45,20 @@ function draw() {
   // <<Universal Top Bar>>
   getTopBar();
 
+  // <<Left Box>>
+  rect(width * 0.25 - 125, height * 0.55, 250, 250);
+  // <<Middle Box>>
+  fill('red');
+  rect(width * 0.5 - 125, height * 0.55, 250, 250);
+  // <<Right Box>>
+  fill('green');
+  rect(width * 0.75 - 125, height * 0.55, 250, 250);
 
   // <<Draggable Object>>
   shape1.over();
   shape1.update();
   shape1.show();
+  shape1.intersects();
   shape2.over();
   shape2.update();
   shape2.show();
