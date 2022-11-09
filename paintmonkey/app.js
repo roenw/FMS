@@ -6,8 +6,15 @@
 // <<Universal Top Bar>>
 var score = 0; // starting score
 var strikes = 10;
-var currColor = '#36150D';
+var currColor = '#C78812';
 let song;
+let s1;
+let s2;
+let s3;
+let s4;
+let winderr;
+var prevX;
+var prevY;
 
 function preload() {
     // <<Universal Top Bar>>
@@ -15,6 +22,11 @@ function preload() {
     barFont = loadFont('../assets/titlefont.otf');
     monkey1 = loadImage('../assets/monkey1.jpg');
     song = new Audio('../assets/sounds/uplifting-africa-84075.mp3');
+    s1 = new Audio('../assets/sounds/one.mp3');
+    s2 = new Audio('../assets/sounds/two.mp3');
+    s3 = new Audio('../assets/sounds/three.mp3');
+    s4 = new Audio('../assets/sounds/four.mp3');
+    winderr = new Audio('../assets/sounds/error.mp3');
 }
 
 function setup() {
@@ -24,6 +36,11 @@ function setup() {
     song.play();
     
     image(monkey1, width * 0.26, height * 0.20, window.screen.height/1.1, window.screen.width/2.72);
+
+    textFont(barFont);
+    fill('black');
+    textSize(25);
+    text('PAINT UNTIL A SCORE OF 1000', width/2.5, height/8);
 
     let clr = color('#36150D');
     fill(clr);
@@ -61,12 +78,17 @@ function draw() {
             if (inBoundary()) {
                 //text(mouseX, 10, 30);
                 //fill(0, 102, 153);
+                if (prevX != mouseX && prevY != mouseY) {
+                    score++;
+                }
 
                 let detectLine = get(mouseX, mouseY);
+                prevX = mouseX;
+                prevY = mouseY;
                 if (detectLine != '0,0,0,255' || detectLine != '2,2,2,255'|| detectLine != '4,4,4,255') {
                 line(mouseX,mouseY,pmouseX, pmouseY);
                 }
-                score++;
+
                 if (score > 1000) {
                     background('#b6fc03');
                     getTopBar();
@@ -81,7 +103,8 @@ function draw() {
 
             else {
                 if (strikes > 0) {
-                outsideImg();
+                    winderr.play();
+                    outsideImg();
                 }
                 else {
                     background('black');
@@ -138,18 +161,22 @@ function inBoundary() {
 
 function getColor() {
     if (mouseY >= 130 && mouseY <= 180 && mouseIsPressed) {
+        s1.play();
         currColor = '#36150D';
     }
 
     else if (mouseY >= 200 && mouseY <= 250 && mouseIsPressed) {
+        s2.play();
         currColor = '#C78812';
     }
 
     else if (mouseY >= 270 && mouseY <= 320 && mouseIsPressed) {
+        s3.play();
         currColor = '#FFF240';
     }
 
     else if (mouseY >= 340 && mouseY <= 390 && mouseIsPressed) {
+        s4.play();
         currColor = '#FFD1AD';
     }
     return currColor;
@@ -196,8 +223,4 @@ function mouseClicked() {
     if(mouseX > (width * 0.95) && mouseY < 35) {
         window.history.back();
     }
-}
-  
-function numberSound() {
-    
 }
