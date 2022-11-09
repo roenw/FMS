@@ -4,21 +4,24 @@
  */
 
 // <<Universal Top Bar>>
-var score = 10; // starting score
+var score = 0; // starting score
+var strikes = 10;
 var currColor = '#36150D';
+let song;
 
 function preload() {
     // <<Universal Top Bar>>
     backArrow = loadImage('../assets/backarrow.png');
     barFont = loadFont('../assets/titlefont.otf');
     monkey1 = loadImage('../assets/monkey1.jpg');
+    song = new Audio('../assets/sounds/uplifting-africa-84075.mp3');
 }
 
 function setup() {
     cursor('../assets/cursor.png', 7, 55);
     createCanvas(window.screen.width - 100, window.screen.height - 150);
     background('#FFFFFF');
-
+    song.play();
     
     image(monkey1, width * 0.26, height * 0.20, window.screen.height/1.1, window.screen.width/2.72);
 
@@ -47,6 +50,7 @@ function setup() {
   
 function draw() {
     // <<Universal Top Bar>>
+    //bgMusic();
     getTopBar();
     if (mouseX <= 80 && mouseX >= 30) {
         stroke(getColor());
@@ -62,10 +66,21 @@ function draw() {
                 if (detectLine != '0,0,0,255' || detectLine != '2,2,2,255'|| detectLine != '4,4,4,255') {
                 line(mouseX,mouseY,pmouseX, pmouseY);
                 }
+                score++;
+                if (score > 1000) {
+                    background('#b6fc03');
+                    getTopBar();
+                    textSize(60);
+                    textFont(barFont);
+                    text('SUCCESS', width/2.45, height/2);
+                    fill('green');
+                    noLoop();
+                    song.pause();
+                }
             }
 
             else {
-                if (score > 0) {
+                if (strikes > 0) {
                 outsideImg();
                 }
                 else {
@@ -76,6 +91,7 @@ function draw() {
                     text('GAME OVER', width/2.4, height/2);
                     fill('red');
                     noLoop();
+                    song.pause();
                 }
             }
 
@@ -144,9 +160,8 @@ function outsideImg() {
     text('PAINTED OUTSIDE LINES', width/2.3, height/20);
     fill('red');
     textSize(20);
-    score--;
+    strikes--;
 }
-
 
 // <<Universal Top Bar>>
 function getTopBar() {
@@ -163,6 +178,14 @@ function getTopBar() {
     text('Score: ', 10, 35);
     text(score, 110, 35);
 
+    textFont(barFont);
+    stroke(1);
+    strokeWeight(3);
+    fill(255);
+    textSize(30);
+    text('Strikes: ', 350, 35);
+    text(strikes, 470, 35);
+
     image(backArrow, width * 0.95, 5, 60, 40);
     pop();
 }
@@ -173,4 +196,8 @@ function mouseClicked() {
     if(mouseX > (width * 0.95) && mouseY < 35) {
         window.history.back();
     }
+}
+  
+function numberSound() {
+    
 }
