@@ -14,6 +14,8 @@ let shape4;
 let shape5;
 let shape6;
 
+//let shapes = [];
+
 function preload() {
   // <<Universal Top Bar>>
   backArrow = loadImage('../assets/backarrow.png');
@@ -33,11 +35,17 @@ function setup() {
   strokeWeight(4);
   stroke(51);
   shape1 = new Draggable(width * 0.25 - 50, height * 0.1, 100, 100, 0, 'blue');
+//  shapes.push(shape1);
   shape2 = new Draggable(width * 0.5 - 50, height * 0.1, 100, 100, 0, 'green');
+ // shapes.push(shape2);
   shape3 = new Draggable(width * 0.75 - 50, height * 0.1, 100, 100, 1, 'green');
+ // shapes.push(shape3);
   shape4 = new Draggable(width * 0.25 - 50, height * 0.25, 100, 100, 1, 'red');
+ // shapes.push(shape4);
   shape5 = new Draggable(width * 0.5 - 50, height * 0.25, 100, 100, 2, 'red');
+ // shapes.push(shape5);
   shape6 = new Draggable(width * 0.75 - 50, height * 0.25, 100, 100, 2, 'blue');
+ // shapes.push(shape6);
 }
 
 function draw() {
@@ -55,6 +63,13 @@ function draw() {
   rect(width * 0.75 - 125, height * 0.55, 250, 250);
 
   // <<Draggable Object>>
+  // for (i = 0; i < shapes.length; i++){
+  //   shapes[i].over;
+  //   shapes[i].update;
+  //   shapes[i].show;
+  //   shapes[i].iontersects;
+  // }
+  
   shape1.over();
   shape1.update();
   shape1.show();
@@ -62,18 +77,23 @@ function draw() {
   shape2.over();
   shape2.update();
   shape2.show();
+  shape2.intersects();
   shape3.over();
   shape3.update();
   shape3.show();
+  shape3.intersects();
   shape4.over();
   shape4.update();
   shape4.show();
+  shape4.intersects();
   shape5.over();
   shape5.update();
   shape5.show();
+  shape5.intersects();
   shape6.over();
   shape6.update();
   shape6.show();
+  shape6.intersects();
 }
 
 function mouseClicked() {
