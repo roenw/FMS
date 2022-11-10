@@ -15,6 +15,7 @@ class Draggable {
     this.color = c;
     this.posx = this.x + 50;
     this.posy = this.y + 50;
+    this.score = 0;
   }
 
   over() {
@@ -76,7 +77,12 @@ class Draggable {
     this.posy = this.y + 50;
     if (this.posx > width * 0.25 - 125 && this.posx < (width * 0.25 - 125) + 250 && this.posy > height * 0.55 && this.posy < (height * 0.55) + 250) {
       //this.color = 'red';
-      score = score + 1;
+      if (this.color == 'blue'){
+        this.score = 1;
+      }
+      
+    } else {
+      this.score = 0;
     }
   }
 }

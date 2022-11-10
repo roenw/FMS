@@ -94,6 +94,8 @@ function draw() {
   shape6.update();
   shape6.show();
   shape6.intersects();
+
+  score = shape1.score + shape2.score + shape3.score + shape4.score + shape5.score + shape6.score;
 }
 
 function mouseClicked() {
