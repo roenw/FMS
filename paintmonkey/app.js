@@ -13,8 +13,7 @@ let s2;
 let s3;
 let s4;
 let winderr;
-var prevX;
-var prevY;
+var arr = [];
 
 function preload() {
     // <<Universal Top Bar>>
@@ -40,7 +39,7 @@ function setup() {
     textFont(barFont);
     fill('black');
     textSize(25);
-    text('PAINT UNTIL A SCORE OF 1000', width/2.5, height/8);
+    text('PAINT UNTIL A SCORE OF 500', width/2.5, height/8);
 
     let clr = color('#36150D');
     fill(clr);
@@ -78,18 +77,18 @@ function draw() {
             if (inBoundary()) {
                 //text(mouseX, 10, 30);
                 //fill(0, 102, 153);
-                if (prevX != mouseX && prevY != mouseY) {
+                var newCoord = mouseX;
+                if (!arr.includes(newCoord)) {
                     score++;
                 }
 
                 let detectLine = get(mouseX, mouseY);
-                prevX = mouseX;
-                prevY = mouseY;
+                arr.push(newCoord);
                 if (detectLine != '0,0,0,255' || detectLine != '2,2,2,255'|| detectLine != '4,4,4,255') {
                 line(mouseX,mouseY,pmouseX, pmouseY);
                 }
 
-                if (score > 1000) {
+                if (score > 499) {
                     background('#b6fc03');
                     getTopBar();
                     textSize(60);
@@ -143,7 +142,6 @@ function inBoundary() {
 
     else if (currColor == '#FFF240') {
         let getColor = get(mouseX, mouseY);
-        text(getColor, 10, 30);
         if (getColor == '255,255,255,255' || getColor == '254,254,254,255' || getColor == '140,140,140,255' || getColor == '65,65,65,255' || getColor == '237,237,237,255'||getColor == '54,21,13,255'||getColor == '199,136,18,255'||getColor == '255,209,173,255') {
             return false;
         }
