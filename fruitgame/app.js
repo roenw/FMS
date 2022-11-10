@@ -8,6 +8,7 @@ var score = 0.0; // starting score
 var time = 30; // start time
 var combo = 1.00;
 var isRunning = false; // game state
+var highScore = 0;
 let bowl1;
 let bowlImg;
 
@@ -88,9 +89,11 @@ function draw() {
     background(jungleBg);
     image(bowlImg, bowl1.x, bowl1.y, 150, 150);
 
-    textSize(40);
-    text('Combo: x', 30, 200);
-    text(round(combo, 2), 210, 200);
+    textSize(35);
+    text('Combo: x', 30, 150);
+    text(round(combo, 2), 190, 150);
+    text('High Score: ', 30, 100);
+    text(highScore, 230, 100);
 
    
     // <<Universal Top Bar>>
@@ -144,6 +147,10 @@ function draw() {
         } else {
             time = 0;
             // game end event
+            if (score > highScore) {
+                highScore = score;
+            }
+
             textFont(barFont);
             stroke(1);
             strokeWeight(3);
