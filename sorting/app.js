@@ -34,18 +34,12 @@ function setup() {
   // <<Draggable Object>>
   strokeWeight(4);
   stroke(51);
-  shape1 = new Draggable(width * 0.25 - 50, height * 0.1, 100, 100, 0, 'blue');
-//  shapes.push(shape1);
-  shape2 = new Draggable(width * 0.5 - 50, height * 0.1, 100, 100, 0, 'green');
- // shapes.push(shape2);
+  shape1 = new Draggable(width * 0.25 - 50, height * 0.1, 100, 100, 1, 'blue');
+  shape2 = new Draggable(width * 0.5 - 50, height * 0.1, 100, 100, 1, 'green');
   shape3 = new Draggable(width * 0.75 - 50, height * 0.1, 100, 100, 1, 'green');
- // shapes.push(shape3);
   shape4 = new Draggable(width * 0.25 - 50, height * 0.25, 100, 100, 1, 'red');
- // shapes.push(shape4);
-  shape5 = new Draggable(width * 0.5 - 50, height * 0.25, 100, 100, 2, 'red');
- // shapes.push(shape5);
-  shape6 = new Draggable(width * 0.75 - 50, height * 0.25, 100, 100, 2, 'blue');
- // shapes.push(shape6);
+  shape5 = new Draggable(width * 0.5 - 50, height * 0.25, 100, 100, 1, 'red');
+  shape6 = new Draggable(width * 0.75 - 50, height * 0.25, 100, 100, 1, 'blue');
 }
 
 function draw() {
@@ -63,12 +57,6 @@ function draw() {
   rect(width * 0.75 - 125, height * 0.55, 250, 250);
 
   // <<Draggable Object>>
-  // for (i = 0; i < shapes.length; i++){
-  //   shapes[i].over;
-  //   shapes[i].update;
-  //   shapes[i].show;
-  //   shapes[i].iontersects;
-  // }
   
   shape1.over();
   shape1.update();

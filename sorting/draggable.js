@@ -76,13 +76,21 @@ class Draggable {
     this.posx = this.x + 50;
     this.posy = this.y + 50;
     if (this.posx > width * 0.25 - 125 && this.posx < (width * 0.25 - 125) + 250 && this.posy > height * 0.55 && this.posy < (height * 0.55) + 250) {
-      //this.color = 'red';
       if (this.color == 'blue'){
         this.score = 1;
       }
-      
-    } else {
-      this.score = 0;
+    } 
+
+    if (this.posx > width * 0.5 - 125 && this.posx < (width * 0.5 - 125) + 250 && this.posy > height * 0.55 && this.posy < (height * 0.55) + 250) {
+      if (this.color == 'red'){
+        this.score = 1;
+      }
+    }
+
+    if (this.posx > width * 0.75 - 125 && this.posx < (width * 0.75 - 125) + 250 && this.posy > height * 0.55 && this.posy < (height * 0.55) + 250) {
+      if (this.color == 'green'){
+        this.score = 1;
+      }
     }
   }
 }
