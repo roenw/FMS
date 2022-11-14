@@ -266,7 +266,7 @@ class Fruit {
             score += (1 * combo);
             combo += 0.25;
             posSound.play();
-            if (combo > 8) {
+            if (combo > 10) {
                 megaSound.play();
                 for (i = 0; i < stars.length; ++i) {
                     stars[i].play();
