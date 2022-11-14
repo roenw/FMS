@@ -8,6 +8,7 @@ var score = 0.0; // starting score
 var time = 30; // start time
 var combo = 1.00;
 var isRunning = false; // game state
+var showHelp = true;
 var highScore = 0;
 let bowl1;
 let bowlImg;
@@ -35,6 +36,7 @@ function preload() {
     rockImg[1] = loadImage('../assets/rock2.png');
     starImg = loadImage('../assets/star.png');
     comboImg = loadImage('../assets/star2.png');
+    arrowKeys = loadImage('../assets/arrowkeys.png');
 
     posSound = loadSound('../assets/sounds/pop2.mp3');
     superSound = loadSound('../assets/sounds/bigpop.wav');
@@ -94,6 +96,10 @@ function draw() {
     text(round(combo, 2), 190, 150);
     text('High Score: ', 30, 100);
     text(highScore, 230, 100);
+
+    if (showHelp) {
+        image(arrowKeys, width * 0.80, height * 0.75, 230, 170);
+    }
 
    
     // <<Universal Top Bar>>
@@ -218,6 +224,7 @@ function keyReleased() {
 }
 
 function keyPressed() {
+    showHelp = false;
     if (keyCode === RIGHT_ARROW) {
         // fartSound.play();
         bowl1.setDir(1);
@@ -266,7 +273,7 @@ class Fruit {
             score += (1 * combo);
             combo += 0.25;
             posSound.play();
-            if (combo > 8) {
+            if (combo > 10) {
                 megaSound.play();
                 for (i = 0; i < stars.length; ++i) {
                     stars[i].play();
