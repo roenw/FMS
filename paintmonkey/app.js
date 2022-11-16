@@ -67,12 +67,15 @@ function setup() {
 function draw() {
     // <<Universal Top Bar>>
     //bgMusic();
+    fill(currColor);
+    square(window.width-115, 130, 50,20);
+
     getTopBar();
     if (mouseX <= 80 && mouseX >= 30) {
         stroke(getColor());
     }
     else if (mouseX >= 80) {
-        strokeWeight(5);
+        strokeWeight(8);
         if(mouseIsPressed){
             if (inBoundary()) {
                 //text(mouseX, 10, 30);
@@ -202,6 +205,13 @@ function getTopBar() {
     textSize(30);
     text('Score: ', 10, 35);
     text(score, 110, 35);
+
+    textFont(barFont);
+    stroke(1);
+    strokeWeight(3);
+    fill(255);
+    textSize(20);
+    text('Current Color:', window.width-170, 120);
 
     textFont(barFont);
     stroke(1);
