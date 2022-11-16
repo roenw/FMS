@@ -5,7 +5,7 @@
 
 // <<Universal Top Bar>>
 var score = 0; // starting score
-var strikes = 10;
+var strikes = 50;
 var currColor = '#C78812';
 let song;
 let s1;
@@ -41,6 +41,34 @@ function setup() {
     textSize(25);
     text('PAINT UNTIL A SCORE OF 500', width/2.5, height/8);
 
+    textFont(barFont);
+    stroke(1);
+    strokeWeight(3);
+    fill(255);
+    textSize(30);
+    text('1', 85, 165);
+
+    textFont(barFont);
+    stroke(1);
+    strokeWeight(3);
+    fill(255);
+    textSize(30);
+    text('2', 85, 235);
+
+    textFont(barFont);
+    stroke(1);
+    strokeWeight(3);
+    fill(255);
+    textSize(30);
+    text('3', 85, 305);
+
+    textFont(barFont);
+    stroke(1);
+    strokeWeight(3);
+    fill(255);
+    textSize(30);
+    text('4', 85, 375);
+
     let clr = color('#36150D');
     fill(clr);
     noStroke();
@@ -67,6 +95,22 @@ function setup() {
 function draw() {
     // <<Universal Top Bar>>
     //bgMusic();
+    if (score == 200) {
+        strikes = ceil(strikes/2);
+    }
+
+    if (score == 400) {
+        strikes = ceil(strikes/2);
+    }
+
+    if (score == 450) {
+        strikes = ceil(strikes/2);
+    }
+
+    if (score == 475) {
+        strikes = ceil(strikes/2);
+    }
+
     fill(currColor);
     square(window.width-115, 130, 50,20);
 
