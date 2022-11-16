@@ -95,6 +95,13 @@ function setup() {
 function draw() {
     // <<Universal Top Bar>>
     //bgMusic();
+    textFont(barFont);
+    stroke(1);
+    strokeWeight(3);
+    fill(255);
+    textSize(20);
+    text('Current Color:', window.width-170, 120);
+
     if (score == 200) {
         strikes = ceil(strikes/2);
     }
@@ -159,8 +166,8 @@ function draw() {
                     textFont(barFont);
                     fill('red');
                     text('GAME OVER', width/2.4, height/2);
-                    noLoop();
                     song.pause();
+                    noLoop();
                 }
             }
 
@@ -249,13 +256,6 @@ function getTopBar() {
     textSize(30);
     text('Score: ', 10, 35);
     text(score, 110, 35);
-
-    textFont(barFont);
-    stroke(1);
-    strokeWeight(3);
-    fill(255);
-    textSize(20);
-    text('Current Color:', window.width-170, 120);
 
     textFont(barFont);
     stroke(1);
