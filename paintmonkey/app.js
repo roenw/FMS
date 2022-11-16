@@ -157,8 +157,8 @@ function draw() {
                     getTopBar();
                     textSize(60);
                     textFont(barFont);
-                    text('GAME OVER', width/2.4, height/2);
                     fill('red');
+                    text('GAME OVER', width/2.4, height/2);
                     noLoop();
                     song.pause();
                 }
@@ -229,9 +229,9 @@ function getColor() {
 
 function outsideImg() {
     textFont(barFont);
-    text('PAINTED OUTSIDE LINES', width/2.3, height/20);
     fill('red');
     textSize(20);
+    text('PAINTED OUTSIDE LINES', width/2.3, height/20);
     strikes--;
 }
 
