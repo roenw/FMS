@@ -224,6 +224,7 @@ function keyReleased() {
 }
 
 function keyPressed() {
+    isRunning = true;
     showHelp = false;
     if (keyCode === RIGHT_ARROW) {
         // fartSound.play();
