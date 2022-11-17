@@ -101,6 +101,7 @@ function draw() {
     fill(255);
     textSize(20);
     text('Current Color:', window.width-170, 120);
+    stroke (currColor);
 
     if (score == 200) {
         strikes = ceil(strikes/2);
