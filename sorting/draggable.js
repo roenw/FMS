@@ -75,22 +75,60 @@ class Draggable {
   intersects() {
     this.posx = this.x + 50;
     this.posy = this.y + 50;
+    // <<Level One>>
+    if (mode == 0){
     if (this.posx > width * 0.25 - 125 && this.posx < (width * 0.25 - 125) + 250 && this.posy > height * 0.55 && this.posy < (height * 0.55) + 250) {
       if (this.color == 'blue'){
         this.score = 1;
+        correct.play();
       }
     } 
+  }
 
+  if (mode == 0){
     if (this.posx > width * 0.5 - 125 && this.posx < (width * 0.5 - 125) + 250 && this.posy > height * 0.55 && this.posy < (height * 0.55) + 250) {
       if (this.color == 'red'){
         this.score = 1;
-      }
-    }
-
-    if (this.posx > width * 0.75 - 125 && this.posx < (width * 0.75 - 125) + 250 && this.posy > height * 0.55 && this.posy < (height * 0.55) + 250) {
-      if (this.color == 'green'){
-        this.score = 1;
+        correct.play();
       }
     }
   }
+
+  if (mode == 0){
+    if (this.posx > width * 0.75 - 125 && this.posx < (width * 0.75 - 125) + 250 && this.posy > height * 0.55 && this.posy < (height * 0.55) + 250) {
+      if (this.color == 'green'){
+        this.score = 1;
+        correct.play();
+      }
+    }
+  }
+
+  // <<Level Two>>
+  if (mode == 1){
+    if (this.posx > width * 0.25 - 125 && this.posx < (width * 0.25 - 125) + 250 && this.posy > height * 0.55 && this.posy < (height * 0.55) + 250) {
+      if (this.shape == 0){
+        this.score = 1;
+        correct.play();
+      }
+    } 
+  }
+
+  if (mode == 1){
+    if (this.posx > width * 0.5 - 125 && this.posx < (width * 0.5 - 125) + 250 && this.posy > height * 0.55 && this.posy < (height * 0.55) + 250) {
+      if (this.shape == 1){
+        this.score = 1;
+        correct.play();
+      }
+    }
+  }
+
+  if (mode == 1){
+    if (this.posx > width * 0.75 - 125 && this.posx < (width * 0.75 - 125) + 250 && this.posy > height * 0.55 && this.posy < (height * 0.55) + 250) {
+      if (this.shape == 2){
+        this.score = 1;
+        correct.play();
+      }
+    }
+  }
+}
 }

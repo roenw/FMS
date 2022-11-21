@@ -24,7 +24,9 @@ function preload() {
   junglebg = loadImage('../assets/junglebg.jpg');
   // <<Sound>>
   bgSound = loadSound('../assets/sounds/moveforward.mp3');
-
+  correct = loadSound('../assets/sounds/correct.wav');
+  wrong = loadSound('../assets/sounds/wrong.wav');
+  nextLevel = loadSound('../assets/sounds/nextlevel.wav');
 }
 
 function setup() {
@@ -34,10 +36,10 @@ function setup() {
   // <<Draggable Object>>
   strokeWeight(4);
   stroke(51);
-  shape1 = new Draggable(width * 0.25 - 50, height * 0.1, 100, 100, 0, 'blue');
+  shape1 = new Draggable(width * 0.25 - 50, height * 0.1, 100, 100, 0, 'red');
   shape2 = new Draggable(width * 0.5 - 50, height * 0.1, 100, 100, 0, 'green');
   shape3 = new Draggable(width * 0.75 - 50, height * 0.1, 100, 100, 1, 'green');
-  shape4 = new Draggable(width * 0.25 - 50, height * 0.25, 100, 100, 1, 'red');
+  shape4 = new Draggable(width * 0.25 - 50, height * 0.25, 100, 100, 1, 'blue');
   shape5 = new Draggable(width * 0.5 - 50, height * 0.25, 100, 100, 2, 'red');
   shape6 = new Draggable(width * 0.75 - 50, height * 0.25, 100, 100, 2, 'blue');
 }
@@ -81,7 +83,7 @@ if (mode == 1){
   fill('black');
   rect(width * 0.25 - 50, height * 0.55 + 100, 100, 100);
   circle(width * 0.5, height * 0.55 + 150, 100);
-  triangle(width * 0.75, height * 0.55 + 150, width * 0.75 - 50, height * 0.55 + 50,width * 0.75 + 50, height * 0.55 - 50);
+  triangle(width * 0.75, height * 0.55 + 100, width * 0.75 - 50, height * 0.55 + 200, width * 0.75 + 50, height * 0.55 + 200);
 }
 
   // <<Draggable Object>>
@@ -162,3 +164,4 @@ function mouseReleased() {
   shape6.released();
 }
 
+// FIXME: add sounds also fix sounds, add origin if incorrect, add button &/or congrats screen?, add level transfer
