@@ -6,6 +6,8 @@
 // <<Universal Top Bar>>
 var score = 0; // starting score
 
+var mode = 1;
+
 // <<Draggable Object>>
 let shape1;
 let shape2;
@@ -13,8 +15,6 @@ let shape3;
 let shape4;
 let shape5;
 let shape6;
-
-//let shapes = [];
 
 function preload() {
   // <<Universal Top Bar>>
@@ -34,12 +34,12 @@ function setup() {
   // <<Draggable Object>>
   strokeWeight(4);
   stroke(51);
-  shape1 = new Draggable(width * 0.25 - 50, height * 0.1, 100, 100, 1, 'blue');
-  shape2 = new Draggable(width * 0.5 - 50, height * 0.1, 100, 100, 1, 'green');
+  shape1 = new Draggable(width * 0.25 - 50, height * 0.1, 100, 100, 0, 'blue');
+  shape2 = new Draggable(width * 0.5 - 50, height * 0.1, 100, 100, 0, 'green');
   shape3 = new Draggable(width * 0.75 - 50, height * 0.1, 100, 100, 1, 'green');
   shape4 = new Draggable(width * 0.25 - 50, height * 0.25, 100, 100, 1, 'red');
-  shape5 = new Draggable(width * 0.5 - 50, height * 0.25, 100, 100, 1, 'red');
-  shape6 = new Draggable(width * 0.75 - 50, height * 0.25, 100, 100, 1, 'blue');
+  shape5 = new Draggable(width * 0.5 - 50, height * 0.25, 100, 100, 2, 'red');
+  shape6 = new Draggable(width * 0.75 - 50, height * 0.25, 100, 100, 2, 'blue');
 }
 
 function draw() {
@@ -47,7 +47,28 @@ function draw() {
   // <<Universal Top Bar>>
   getTopBar();
 
+  if (mode == 0){
+  textFont(barFont);
+  stroke(1);
+  strokeWeight(3);
+  fill(255);
+  textSize(30);
+  text('Sort the objects by color!', width * 0.5 - 200, height * 0.25 + 150);
+  text(200, 35);
+}
+
+if (mode == 1){
+  textFont(barFont);
+  stroke(1);
+  strokeWeight(3);
+  fill(255);
+  textSize(30);
+  text('Sort the objects by shape!', width * 0.5 - 200, height * 0.25 + 150);
+  text(200, 35);
+}
+
   // <<Left Box>>
+  fill('blue');
   rect(width * 0.25 - 125, height * 0.55, 250, 250);
   // <<Middle Box>>
   fill('red');
@@ -55,6 +76,13 @@ function draw() {
   // <<Right Box>>
   fill('green');
   rect(width * 0.75 - 125, height * 0.55, 250, 250);
+
+if (mode == 1){
+  fill('black');
+  rect(width * 0.25 - 50, height * 0.55 + 100, 100, 100);
+  circle(width * 0.5, height * 0.55 + 150, 100);
+  triangle(width * 0.75, height * 0.55 + 150, width * 0.75 - 50, height * 0.55 + 50,width * 0.75 + 50, height * 0.55 - 50);
+}
 
   // <<Draggable Object>>
   
