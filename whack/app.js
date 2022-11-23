@@ -22,6 +22,10 @@ var score = 0; // starting score
 var time = 30; // start time
 var isRunning; // game state
 
+const helpMessage = 'Help';
+const helpMessageX = 1500;
+const helpMessageY = 35;
+
 function preload() {
     bg = loadImage('../assets/grass.jpg');
     moleCA = loadImage('../assets/mole-ca.png');
@@ -31,12 +35,21 @@ function preload() {
     barFont = loadFont('../assets/titlefont.otf');
 }
 
+function isMouseInsideText(message, messageX, messageY) {
+    const messageWidth = textWidth(message);
+    const messageTop = messageY - textAscent();
+    const messageBottom = messageY + textDescent();
+  
+    return mouseX > messageX && mouseX < messageX + messageWidth &&
+      mouseY > messageTop && mouseY < messageBottom;
+}
 
 function generateRandom(min, max) {
     // normalize min and max values
     min = Math.ceil(min);
     max = Math.floor(max);
-    // js representation of a very complicated mathematical function to generate a random number
+
+    // js representation of a complicated mathematical function to generate a random number
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
@@ -70,6 +83,13 @@ function setup() {
 function draw() {
     // <<Universal Top Bar>>
     getTopBar();
+
+    textFont(barFont);
+    stroke(1);
+    strokeWeight(3);
+    fill(255);
+    textSize(30);
+    text(helpMessage, helpMessageX, helpMessageY);
 
     if (time < 0) {
         isRunning = false;
@@ -125,6 +145,13 @@ function draw() {
     }
 }
 
+function showHelpAlert() {
+    // need to reload page after showing help alert as game recognizes click on "ok" as start game action even though we don't want to start the game
+    if(confirm('How to play Whack a Mole?\nTo play the game, simply click the mole. Your score will increase and you will hear audio feedback.\nOnce you start the game, moles will appear in random places on the screen at a random time interval.\nIf you click the moles fast, the game will give you more even faster, allowing you an opportunity to earn more points.\nClick as many moles as you can before the timer runs out to earn the most points.')){
+        window.location.reload();  
+    }    
+}
+
 // <<Universal Top Bar>>
 function getTopBar() {
     push();
@@ -147,6 +174,10 @@ function getTopBar() {
 }
 
 function mouseClicked() {
+    if (isMouseInsideText(helpMessage, helpMessageX, helpMessageY)) {
+        showHelpAlert();
+      }
+
     // <<Universal Top Bar>>
     // Back Button
     if(mouseX > (width * 0.95) && mouseY < 35) {
