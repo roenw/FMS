@@ -6,7 +6,7 @@
 // <<Universal Top Bar>>
 var score = 0; // starting score
 
-var mode = 1;
+var mode = 0;
 
 // <<Draggable Object>>
 let shape1;
@@ -67,6 +67,11 @@ if (mode == 1){
   textSize(30);
   text('Sort the objects by shape!', width * 0.5 - 200, height * 0.25 + 150);
   text(200, 35);
+}
+
+if (score == 6){
+  mode = 1;
+  nextLevel.play();
 }
 
   // <<Left Box>>

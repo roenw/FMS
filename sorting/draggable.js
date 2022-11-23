@@ -82,6 +82,9 @@ class Draggable {
         this.score = 1;
         correct.play();
       }
+      if (this.color == 'green' || this.color == 'red'){
+        wrong.play();
+      }
     } 
   }
 
@@ -91,6 +94,9 @@ class Draggable {
         this.score = 1;
         correct.play();
       }
+      if (this.color == 'green' || this.color == 'blue'){
+        wrong.play();
+      }
     }
   }
 
@@ -99,6 +105,9 @@ class Draggable {
       if (this.color == 'green'){
         this.score = 1;
         correct.play();
+      }
+      if (this.color == 'blue' || this.color == 'red'){
+        wrong.play();
       }
     }
   }
@@ -110,6 +119,9 @@ class Draggable {
         this.score = 1;
         correct.play();
       }
+      if (this.shape == 1 || this.shape == 2){
+        wrong.play();
+      }
     } 
   }
 
@@ -119,6 +131,9 @@ class Draggable {
         this.score = 1;
         correct.play();
       }
+      if (this.shape == 0 || this.shape == 2){
+        wrong.play();
+      }
     }
   }
 
@@ -127,6 +142,9 @@ class Draggable {
       if (this.shape == 2){
         this.score = 1;
         correct.play();
+      }
+      if (this.shape == 1 || this.shape == 0){
+        wrong.play();
       }
     }
   }
