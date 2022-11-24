@@ -22,8 +22,8 @@ var score = 0; // starting score
 var time = 30; // start time
 var isRunning; // game state
 
+const helpMessageX = screen.width * 0.8;
 const helpMessage = 'Help';
-const helpMessageX = 1500;
 const helpMessageY = 35;
 
 function preload() {
@@ -33,15 +33,6 @@ function preload() {
     // <<Universal Top Bar>>
     backArrow = loadImage('../assets/backarrow.png');
     barFont = loadFont('../assets/titlefont.otf');
-}
-
-function isMouseInsideText(message, messageX, messageY) {
-    const messageWidth = textWidth(message);
-    const messageTop = messageY - textAscent();
-    const messageBottom = messageY + textDescent();
-  
-    return mouseX > messageX && mouseX < messageX + messageWidth &&
-      mouseY > messageTop && mouseY < messageBottom;
 }
 
 function generateRandom(min, max) {
@@ -84,13 +75,6 @@ function draw() {
     // <<Universal Top Bar>>
     getTopBar();
 
-    textFont(barFont);
-    stroke(1);
-    strokeWeight(3);
-    fill(255);
-    textSize(30);
-    text(helpMessage, helpMessageX, helpMessageY);
-
     if (time < 0) {
         isRunning = false;
         gameFinished = true;
@@ -102,7 +86,7 @@ function draw() {
     } else if(isRunning === false && gameFinished === false) {
         fill(255);
         textSize(55);
-        text('Click the grass to start game.', 500, 950);
+        text('Click the grass to start game.', screen.width * 0.27, screen.height * 0.5);
     }
 
     if(isRunning === true) {
@@ -110,7 +94,7 @@ function draw() {
             if(timeDelta) {
                 if(timeDelta < 1500) {
                     // if user is fast at clicking moles, give them the moles faster (next level)
-                    setTimeout(drawMole, generateRandom(250, 1500));
+                    setTimeout(drawMole, generateRandom(250, 1200));
                     moleUp = true;
                 } else {
                     setTimeout(drawMole, generateRandom(1000, 3000));
@@ -171,6 +155,22 @@ function getTopBar() {
 
     image(backArrow, width * 0.95, 5, 60, 40);
     pop();
+
+    textFont(barFont);
+    stroke(1);
+    strokeWeight(3);
+    fill(255);
+    textSize(30);
+    text(helpMessage, helpMessageX, helpMessageY);
+}
+
+function isMouseInsideText(message, messageX, messageY) {
+    const messageWidth = textWidth(message);
+    const messageTop = messageY - textAscent();
+    const messageBottom = messageY + textDescent();
+  
+    return mouseX > messageX && mouseX < messageX + messageWidth &&
+      mouseY > messageTop && mouseY < messageBottom;
 }
 
 function mouseClicked() {
