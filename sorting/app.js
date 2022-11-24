@@ -1,11 +1,11 @@
 /**
- * "Sorting Shapes"
+ * "Sorting Objects"
  * Savannah Gong
  */
 
 // <<Universal Top Bar>>
 var score = 0; // starting score
-
+var startScore = 0;
 var mode = 0;
 
 // <<Draggable Object>>
@@ -49,7 +49,7 @@ function draw() {
   // <<Universal Top Bar>>
   getTopBar();
 
-  if (mode == 0){
+if (mode == 0){
   textFont(barFont);
   stroke(1);
   strokeWeight(3);
@@ -69,9 +69,39 @@ if (mode == 1){
   text(200, 35);
 }
 
-if (score == 6){
-  mode = 1;
-  nextLevel.play();
+if (mode == 2){
+  textFont(barFont);
+   stroke(2);
+   strokeWeight(3);
+   fill(255);
+   textSize(50);
+   text('Congrats! You made it to Level 2!', width * 0.5 - 400, height * 0.25 + 100);
+   text(200, 35);
+    textSize(75);
+    text('Start', width * 0.5 - 100, height * 0.25 + 200);
+  
+  //background(jungleBg);
+}
+
+if (mode == 3){
+  textFont(barFont);
+   stroke(2);
+   strokeWeight(3);
+   fill(255);
+   textSize(50);
+   text('Congrats! You have correctly sorted the objects!', width * 0.5 - 625, height * 0.25 + 100);
+   text(200, 35);
+   textSize(75);
+    text('Play Again', width * 0.5 - 200, height * 0.25 + 200);
+  
+  //background(jungleBg);
+}
+
+if (score == 6 && mode == 0){
+  mode = 2;
+}
+if (score == 6 && mode == 1){
+  mode = 3;
 }
 
   // <<Left Box>>
@@ -119,14 +149,51 @@ if (mode == 1){
   shape6.intersects();
 
   score = shape1.score + shape2.score + shape3.score + shape4.score + shape5.score + shape6.score;
+
+  if (score == 6){
+  shape1.score = 0;
+  shape2.score = 0;
+  shape3.score = 0;
+  shape4.score = 0;
+  shape5.score = 0;
+  shape6.score = 0;
+  }
 }
 
 function mouseClicked() {
   // <<Universal Top Bar>>
   // Back Button
-  if(mouseX > (width * 0.95) && mouseY < 35) {
+  if (mouseX > (width * 0.95) && mouseY < 35) {
     window.history.back();
   }
+
+  if (mode == 2){
+  let d = dist(mouseX, mouseY, width / 2, height * 0.45);
+    if (d < 100) {
+      mode = 1;
+      nextLevel.play();
+      shape1.origin();
+      shape2.origin();
+      shape3.origin();
+      shape4.origin();
+      shape5.origin();
+      shape6.origin();
+    }
+  }
+
+  if (mode == 3){
+    let d = dist(mouseX, mouseY, width / 2, height * 0.45);
+      if (d < 100) {
+        mode = 0;
+        nextLevel.play();
+        shape1.origin();
+        shape2.origin();
+        shape3.origin();
+        shape4.origin();
+        shape5.origin();
+        shape6.origin();
+      }
+    }
 }
 
 // <<Universal Top Bar>>
@@ -169,4 +236,4 @@ function mouseReleased() {
   shape6.released();
 }
 
-// FIXME: add sounds also fix sounds, add origin if incorrect, add button &/or congrats screen?, add level transfer
+// FIXME: add sounds also fix sounds, add origin if incorrect, 

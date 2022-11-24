@@ -16,6 +16,11 @@ class Draggable {
     this.posx = this.x + 50;
     this.posy = this.y + 50;
     this.score = 0;
+    this.sound = 0;
+    this.originx = this.x;
+    this.originy = this.y;
+    this.originw = this.w;
+    this.originh = this.h;
   }
 
   over() {
@@ -72,6 +77,13 @@ class Draggable {
     this.dragging = false;
   }
 
+  origin() {
+    this.x = this.originx;
+    this.y = this.originy;
+    this.w = this.originw;
+    this.h = this.originh;
+  }
+
   intersects() {
     this.posx = this.x + 50;
     this.posy = this.y + 50;
@@ -80,10 +92,12 @@ class Draggable {
     if (this.posx > width * 0.25 - 125 && this.posx < (width * 0.25 - 125) + 250 && this.posy > height * 0.55 && this.posy < (height * 0.55) + 250) {
       if (this.color == 'blue'){
         this.score = 1;
-        correct.play();
+        //correct.play();
       }
       if (this.color == 'green' || this.color == 'red'){
-        wrong.play();
+        this.score = -1;
+        //wrong.play();
+        //origin();      
       }
     } 
   }
@@ -92,10 +106,12 @@ class Draggable {
     if (this.posx > width * 0.5 - 125 && this.posx < (width * 0.5 - 125) + 250 && this.posy > height * 0.55 && this.posy < (height * 0.55) + 250) {
       if (this.color == 'red'){
         this.score = 1;
-        correct.play();
+        //correct.play();
       }
       if (this.color == 'green' || this.color == 'blue'){
-        wrong.play();
+        this.score = -1;
+        //wrong.play();
+        //origin();      
       }
     }
   }
@@ -104,10 +120,12 @@ class Draggable {
     if (this.posx > width * 0.75 - 125 && this.posx < (width * 0.75 - 125) + 250 && this.posy > height * 0.55 && this.posy < (height * 0.55) + 250) {
       if (this.color == 'green'){
         this.score = 1;
-        correct.play();
+        //correct.play();
       }
       if (this.color == 'blue' || this.color == 'red'){
-        wrong.play();
+        this.score = -1;
+        //wrong.play();
+        //origin();      
       }
     }
   }
@@ -117,10 +135,12 @@ class Draggable {
     if (this.posx > width * 0.25 - 125 && this.posx < (width * 0.25 - 125) + 250 && this.posy > height * 0.55 && this.posy < (height * 0.55) + 250) {
       if (this.shape == 0){
         this.score = 1;
-        correct.play();
+        //correct.play();
       }
       if (this.shape == 1 || this.shape == 2){
-        wrong.play();
+        this.score = -1;
+        //wrong.play();
+        //origin();      
       }
     } 
   }
@@ -129,10 +149,12 @@ class Draggable {
     if (this.posx > width * 0.5 - 125 && this.posx < (width * 0.5 - 125) + 250 && this.posy > height * 0.55 && this.posy < (height * 0.55) + 250) {
       if (this.shape == 1){
         this.score = 1;
-        correct.play();
+        //correct.play();
       }
       if (this.shape == 0 || this.shape == 2){
-        wrong.play();
+        this.score = -1;
+        //wrong.play();
+        //origin();      
       }
     }
   }
@@ -141,10 +163,12 @@ class Draggable {
     if (this.posx > width * 0.75 - 125 && this.posx < (width * 0.75 - 125) + 250 && this.posy > height * 0.55 && this.posy < (height * 0.55) + 250) {
       if (this.shape == 2){
         this.score = 1;
-        correct.play();
+        //correct.play();
       }
       if (this.shape == 1 || this.shape == 0){
-        wrong.play();
+        this.score = -1;
+        //wrong.play();
+        //origin();
       }
     }
   }
