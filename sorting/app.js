@@ -5,7 +5,6 @@
 
 // <<Universal Top Bar>>
 var score = 0; // starting score
-var startScore = 0;
 var mode = 0;
 
 // <<Draggable Object>>
@@ -76,11 +75,11 @@ if (mode == 2){
    fill(255);
    textSize(50);
    text('Congrats! You made it to Level 2!', width * 0.5 - 400, height * 0.25 + 100);
+   textSize(30);
+   text('Click', width * 0.5 - 50, height * 0.25 + 135);
    text(200, 35);
     textSize(75);
-    text('Start', width * 0.5 - 100, height * 0.25 + 200);
-  
-  //background(jungleBg);
+    text('Start', width * 0.5 - 125, height * 0.25 + 200);
 }
 
 if (mode == 3){
@@ -90,11 +89,11 @@ if (mode == 3){
    fill(255);
    textSize(50);
    text('Congrats! You have correctly sorted the objects!', width * 0.5 - 625, height * 0.25 + 100);
+   textSize(30);
+   text('Click', width * 0.5 - 50, height * 0.25 + 135);
    text(200, 35);
    textSize(75);
     text('Play Again', width * 0.5 - 200, height * 0.25 + 200);
-  
-  //background(jungleBg);
 }
 
 if (score == 6 && mode == 0){
@@ -102,6 +101,14 @@ if (score == 6 && mode == 0){
 }
 if (score == 6 && mode == 1){
   mode = 3;
+}
+if (mode == 3){
+  shape1.sound();
+  shape2.sound();
+  shape3.sound();
+  shape4.sound();
+  shape5.sound();
+  shape6.sound();
 }
 
   // <<Left Box>>
@@ -193,6 +200,7 @@ function mouseClicked() {
         shape5.origin();
         shape6.origin();
       }
+
     }
 }
 
@@ -236,4 +244,4 @@ function mouseReleased() {
   shape6.released();
 }
 
-// FIXME: add sounds also fix sounds, add origin if incorrect, 
+// FIXME: add origin if incorrect
