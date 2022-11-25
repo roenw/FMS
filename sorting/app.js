@@ -218,7 +218,7 @@ function getTopBar() {
   textSize(30);
   text('Score: ', 10, 35);
   text(score, 110, 35);
-
+  text('/6', 130, 35);
 
   image(backArrow, width * 0.95, 5, 60, 40);
   pop();
