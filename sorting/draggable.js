@@ -118,7 +118,7 @@ class Draggable {
           wrong.play();
           this.wrongSound0 = true;
         }
-        //origin();      
+        this.origin();      
       }
     }
   }
@@ -138,7 +138,7 @@ class Draggable {
           wrong.play();
           this.wrongSound0 = true;
         }
-        //origin();      
+        this.origin();      
       }
     }
   }
@@ -158,7 +158,7 @@ class Draggable {
           wrong.play();
           this.wrongSound0 = true;
         }
-        //origin();      
+        this.origin();      
       }
     }
   }
@@ -179,7 +179,7 @@ class Draggable {
           wrong.play();
           this.wrongSound1 = true;
         }
-        //origin();      
+        this.origin();      
       }
     }
   }
@@ -199,7 +199,7 @@ class Draggable {
           wrong.play();
           this.wrongSound1 = true;
         }
-        //origin();      
+        this.origin();      
       }
     }
   }
@@ -219,7 +219,7 @@ class Draggable {
           wrong.play();
           this.wrongSound1 = true;
         }
-        //origin();
+        this.origin();
       }
     }
   }
