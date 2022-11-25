@@ -243,5 +243,3 @@ function mouseReleased() {
   shape5.released();
   shape6.released();
 }
-
-// FIXME: add origin if incorrect
